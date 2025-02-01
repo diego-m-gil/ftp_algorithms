@@ -9,9 +9,14 @@ A comprehensive LaTeX-based cheat sheet covering fundamental algorithms and data
 - And more...
 
 ## Latest Version
-[<img src="FTP_Algorithms_HS24_CheatSheet.pdf" width="300"/>](FTP_Algorithms_HS24_CheatSheet.pdf)
+<object data="FTP_Algorithms_HS24_CheatSheet.pdf" type="application/pdf" width="100%" height="600px">
+    <embed src="FTP_Algorithms_HS24_CheatSheet.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: 
+        <a href="FTP_Algorithms_HS24_CheatSheet.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
 
-You can download the latest version of the cheat sheet [here](FTP_Algorithms_HS24_CheatSheet.pdf).
+You can also directly [download the latest version](FTP_Algorithms_HS24_CheatSheet.pdf) of the cheat sheet.
 
 ## Structure
 - `main.tex`: Main document that includes all other files
