@@ -400,6 +400,152 @@ $P = \{(1,3), (12,1), (4,5), (5,4),$ \\
 \end{itemize}
 
 \clearpage
+\section{\texorpdfstring{\underline{Graph Theory}}{Graph Theory}}
+\subsection{Basic Definitions}
+\textbf{Graph:} A graph $G = (V,E)$ consists of:
+\begin{itemize}[noitemsep]
+    \item $V$: Set of vertices (nodes)
+    \item $E$: Set of edges connecting vertices
+    \item For directed graphs: $E \subseteq V \times V$
+    \item For undirected graphs: $E$ contains unordered pairs
+\end{itemize}
+
+\textbf{Graph Operations:}
+\begin{itemize}[noitemsep]
+    \item \textbf{Transpose:} $G^T = (V,E^T)$ where $E^T = \{(u,v) \mid (v,u) \in E\}$
+    \item \textbf{Subgraph:} Graph $H = (W,F)$ where $W \subseteq V$ and $F \subseteq E$
+    \item \textbf{Path:} Sequence of vertices connected by edges
+    \item \textbf{Cycle:} Path that starts and ends at same vertex
+\end{itemize}
+
+\textbf{Graph Properties:}
+\begin{itemize}[noitemsep]
+    \item \textbf{Connected:} Path exists between any two vertices
+    \item \textbf{Strongly Connected:} Directed path exists between any two vertices
+    \item \textbf{Tree:} Connected graph with no cycles
+    \item \textbf{DAG:} Directed Acyclic Graph
+    \item \textbf{Dense:} $|E| \approx |V|^2$
+    \item \textbf{Sparse:} $|E| \ll |V|^2$
+\end{itemize}
+
+\textbf{Graph Representations:}
+\begin{enumerate}[noitemsep]
+    \item \textbf{Adjacency Matrix:}
+        \begin{itemize}[noitemsep]
+            \item $n \times n$ matrix where $n = |V|$
+            \item Entry $m_{ij}$ is 1 if edge $(i,j)$ exists, 0 otherwise
+            \item For weighted graphs: $m_{ij}$ contains edge weight
+            \item Space complexity: $\Theta(|V|^2)$
+            \item Good for dense graphs
+            \item Operations:
+                \begin{itemize}[noitemsep]
+                    \item Edge lookup: $O(1)$
+                    \item Add/remove edge: $O(1)$
+                    \item Add vertex: $O(|V|^2)$
+                    \item Find neighbors: $O(|V|)$
+                    \item Transpose: $O(|V|^2)$
+                \end{itemize}
+        \end{itemize}
+    \item \textbf{Adjacency List:}
+        \begin{itemize}[noitemsep]
+            \item Array of $|V|$ linked lists
+            \item For each vertex, store list of adjacent vertices
+            \item Space complexity: $\Theta(|V| + |E|)$
+            \item Better for sparse graphs
+            \item Operations:
+                \begin{itemize}[noitemsep]
+                    \item Edge lookup: $O(\text{degree}(v))$
+                    \item Add edge: $O(1)$
+                    \item Remove edge: $O(\text{degree}(v))$
+                    \item Add vertex: $O(1)$
+                    \item Find neighbors: $O(1)$
+                    \item Transpose: $O(|V| + |E|)$
+                \end{itemize}
+        \end{itemize}
+\end{enumerate}
+
+\subsubsection{Shortest Paths}
+\textbf{Single-Source Shortest Path Problem:}
+\begin{itemize}[noitemsep]
+    \item Find shortest paths from source $s$ to all vertices
+    \item Path weight: Sum of edge weights along path
+    \item Different algorithms for different scenarios:
+        \begin{itemize}[noitemsep]
+            \item Dijkstra: Non-negative weights
+            \item Bellman-Ford: General weights
+            \item BFS: Unweighted graphs
+        \end{itemize}
+\end{itemize}
+
+\textbf{Path Properties:}
+\begin{itemize}[noitemsep]
+    \item \textbf{Optimal Substructure:} Subpaths of shortest paths are shortest paths
+    \item \textbf{Triangle Inequality:} $\delta(s,v) \leq \delta(s,u) + w(u,v)$
+    \item \textbf{No Negative Cycles:} Required for well-defined shortest paths
+    \item \textbf{Upper Bound Property:} $v.d \geq \delta(s,v)$ always
+\end{itemize}
+
+\subsubsection{Dijkstra's Algorithm}
+\textbf{Purpose:} Find shortest paths from source vertex to all other vertices
+
+\textbf{Requirements:}
+\begin{itemize}[noitemsep]
+    \item Non-negative edge weights
+    \item Can be directed or undirected graph
+\end{itemize}
+
+\textbf{Algorithm Steps:}
+\begin{enumerate}[noitemsep]
+    \item Initialize:
+        \begin{itemize}[noitemsep]
+            \item $s.d = 0$ (source distance)
+            \item $v.d = \infty$ for all other vertices
+            \item $Q = V$ (priority queue)
+            \item $v.\pi = \text{NIL}$ for all vertices (predecessors)
+        \end{itemize}
+    \item While $Q$ not empty:
+        \begin{itemize}[noitemsep]
+            \item $u = $ Extract-Min$(Q)$
+            \item For each edge $(u,v)$:
+                \begin{itemize}[noitemsep]
+                    \item Relax: If $v.d > u.d + w(u,v)$:
+                        \begin{itemize}[noitemsep]
+                            \item $v.d = u.d + w(u,v)$
+                            \item $v.\pi = u$ (predecessor)
+                        \end{itemize}
+                \end{itemize}
+        \end{itemize}
+\end{enumerate}
+
+\textbf{Correctness:}
+\begin{itemize}[noitemsep]
+    \item Invariants:
+        \begin{itemize}[noitemsep]
+            \item $v.d \geq \delta(s,v)$ for all $v \in V$
+            \item If $v.\pi \neq \text{NIL}$, then $v.d = v.\pi.d + w(v.\pi,v)$
+            \item Once $v$ extracted from $Q$, $v.d = \delta(s,v)$
+        \end{itemize}
+    \item Fails with negative weights because:
+        \begin{itemize}[noitemsep]
+            \item Assumes adding edge cannot decrease path weight
+            \item Negative cycles can create arbitrarily small paths
+            \item Once vertex extracted, its distance assumed final
+        \end{itemize}
+\end{itemize}
+
+\textbf{Implementation Details:}
+\begin{itemize}[noitemsep]
+    \item Priority Queue Options:
+        \begin{itemize}[noitemsep]
+            \item Binary Heap: $O((|V| + |E|)\log |V|)$
+            \item Fibonacci Heap: $O(|V|\log |V| + |E|)$
+            \item Array: $O(|V|^2)$
+        \end{itemize}
+    \item Space Complexity: $O(|V|)$
+    \item Path Reconstruction: Follow $\pi$ pointers from target to source
+\end{itemize}
+
+\clearpage
 \section{\texorpdfstring{\underline{Complexity Analysis}}{Complexity Analysis}}
 
 \subsection{Sorting Complexity}
