@@ -531,3 +531,93 @@ For a node at index $i$:
             \item MAX-HEAPIFY root
         \end{itemize}
 \end{enumerate}
+
+\textbf{COUNTING-SORT}
+\textbf{Overview:} A non-comparison based sorting algorithm that works in $O(n + k)$ time, where $n$ is the number of elements and $k$ is the range of input.
+
+\textbf{Key Properties:}
+\begin{itemize}[noitemsep]
+    \item Stable sorting algorithm
+    \item Works best when $k = O(n)$
+    \item Requires extra space for counting array $C$ and output array $B$
+    \item Input must be non-negative integers
+\end{itemize}
+
+\textbf{Algorithm Steps:}
+\begin{enumerate}[noitemsep]
+    \item Initialize counting array $C[0..k]$ to all zeros
+    \item Count occurrences of each element in input array $A$
+    \item Compute cumulative sums in $C$
+    \item Build output array $B$ using $C$ as position guide
+\end{enumerate}
+
+\textbf{Pseudocode:}
+\begin{algorithmic}[1]
+\Function{COUNTING-SORT}{$A,B,k$}
+    \State let $C[0..k]$ be a new array
+    \For{$i \gets 0$ to $k$}
+        \State $C[i] \gets 0$
+    \EndFor
+    \For{$i \gets 1$ to $A.length$}
+        \State $C[A[i]] \gets C[A[i]] + 1$
+    \EndFor
+    \For{$i \gets 1$ to $k$}
+        \State $C[i] \gets C[i] + C[i-1]$
+    \EndFor
+    \For{$j \gets A.length$ downto $1$}
+        \State $B[C[A[j]]] \gets A[j]$
+        \State $C[A[j]] \gets C[A[j]] - 1$
+    \EndFor
+\EndFunction
+\end{algorithmic}
+
+\textbf{Array States During Execution:}
+\begin{itemize}[noitemsep]
+    \item After counting ($C[i]$ = frequency of $i$):
+        \begin{itemize}[noitemsep]
+            \item Each $C[i]$ contains count of elements equal to $i$
+        \end{itemize}
+    \item After cumulative sums:
+        \begin{itemize}[noitemsep]
+            \item Each $C[i]$ contains count of elements $\leq i$
+            \item $C[i]$ represents position after which next $i$ should go
+        \end{itemize}
+    \item During output array construction:
+        \begin{itemize}[noitemsep]
+            \item Process input from right to left
+            \item Use $C[A[j]]$ as position index in $B$
+            \item Decrement $C[A[j]]$ after each placement
+        \end{itemize}
+\end{itemize}
+
+\textbf{Time Complexity Analysis:}
+\begin{itemize}[noitemsep]
+    \item Initialize $C$: $O(k)$
+    \item Count frequencies: $O(n)$
+    \item Compute cumulative sums: $O(k)$
+    \item Build output array: $O(n)$
+    \item Total: $O(n + k)$
+\end{itemize}
+
+\textbf{Space Complexity:}
+\begin{itemize}[noitemsep]
+    \item Array $C$: $O(k)$
+    \item Array $B$: $O(n)$
+    \item Total: $O(n + k)$
+\end{itemize}
+
+\textbf{Key Insights:}
+\begin{itemize}[noitemsep]
+    \item Processing from right to left ensures stability
+    \item Cumulative sum array $C$ determines final positions
+    \item No comparisons between elements needed
+    \item Efficient when range of input is not too large
+\end{itemize}
+
+\textbf{Common Applications:}
+\begin{itemize}[noitemsep]
+    \item Sorting integers with known range
+    \item As subroutine in Radix Sort
+    \item When stability is required
+    \item When input range is $O(n)$
+\end{itemize}

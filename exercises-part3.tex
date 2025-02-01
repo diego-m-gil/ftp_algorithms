@@ -27,14 +27,14 @@
         &= T(n-2) + \Theta(n-1) + \Theta(n) \\
         &= T(n-3) + \Theta(n-2) + \Theta(n-1) + \Theta(n) \\
         &\vdots \\
-        &= T(0) + \Theta(1) + \Theta(2) + ... + \Theta(n-1) + \Theta(n)
+        &= T(0) + \sum_{i=1}^n \Theta(i)
     \end{align*}
 
     \item \textbf{Final Step:}
     \begin{itemize}[noitemsep]
-        \item Sum is arithmetic series: $1 + 2 + ... + (n-1) + n$
-        \item Using identity: $1 + 2 + ... + n = \frac{n(n+1)}{2}$
-        \item Therefore: $T(n) = \Theta(\frac{n(n+1)}{2}) = \Theta(n^2)$
+        \item Sum is arithmetic series: $\sum_{i=1}^n i$
+        \item Using identity: $\sum_{i=1}^n i = \frac{n(n+1)}{2}$
+        \item Therefore: $T(n) = \Theta(n^2)$
     \end{itemize}
 \end{enumerate}
 
@@ -59,8 +59,8 @@
     \item \textbf{Inductive Step:}
     \begin{align*}
         T(n) &= T(n-1) + T(0) + P(n) \\
-        c(n-1)^2 + 2cn &= cn^2 - 2cn + 1 + 2cn = cn^2 + 1 > cn^2 \\
-        d(n-1)^2 + dn &= dn^2 - 2dn + 1 + dn = dn^2 - dn + 1 \leq dn^2
+        c(n-1)^2 + 2cn &\leq cn^2 - 2cn + 1 + 2cn = cn^2 + 1 \\
+        d(n-1)^2 + dn &\leq dn^2 - dn + 1 \leq dn^2
     \end{align*}
 
     Therefore: $cn^2 < T(n) \leq dn^2$, proving $T(n) = \Theta(n^2)$
@@ -73,3 +73,71 @@
     \item The cumulative effect leads to quadratic runtime
     \item Both intuitive and formal proofs confirm $\Theta(n^2)$ complexity
 \end{itemize}
+
+\subsection{Exercise 4.2: COUNTING-SORT Algorithm}
+\textbf{Problem:} We apply COUNTING-SORT with the input vector $A = (5,6,5,3,3,7,4,4,4,5,3,8,8)$. Let $C$ and $B$ be the arrays mentioned in the pseudocode of COUNTING-SORT. Answer the following questions:
+
+\begin{enumerate}[leftmargin=*,noitemsep]
+    \item What is $C[7]$ after the for loop at lines 7-8 of the pseudocode?
+    \item What is $B[13]$ after the first cycle at line 10?
+    \item What is $C[8]$ after the first cycle?
+\end{enumerate}
+
+\textbf{Solution:} Let's solve this step by step following the COUNTING-SORT algorithm.
+
+\textbf{1. Algorithm Overview:}
+\begin{itemize}[noitemsep]
+    \item Input array $A = (5,6,5,3,3,7,4,4,4,5,3,8,8)$ with $k=8$ (max value)
+    \item Array $C[0..k]$ is used for counting and cumulative sums
+    \item Array $B[1..n]$ will store the sorted output
+\end{itemize}
+
+\textbf{2. Step-by-Step Execution:}
+\begin{enumerate}[leftmargin=*,noitemsep]
+    \item \textbf{Initialize array $C$:}
+    \begin{itemize}[noitemsep]
+        \item Create $C[0..8]$ initialized to zeros
+        \item $C = [0,0,0,0,0,0,0,0,0]$
+    \end{itemize}
+
+    \item \textbf{Count elements (lines 3-4):}
+    \begin{itemize}[noitemsep]
+        \item Count occurrences of each value in $A$
+        \item After this step: $C = [0,0,0,3,3,3,1,1,2]$
+        \item Meaning: three 3s, three 4s, three 5s, one 6, one 7, two 8s
+    \end{itemize}
+
+    \item \textbf{Compute cumulative sums (lines 5-6):}
+    \begin{itemize}[noitemsep]
+        \item Transform $C$ into cumulative counts
+        \item $C = [0,0,0,3,6,9,10,11,13]$
+        \item Therefore, $C[7] = 11$ (\textbf{Answer to Question 1})
+    \end{itemize}
+
+    \item \textbf{Build sorted array (lines 7-8):}
+    \begin{itemize}[noitemsep]
+        \item Process $A$ from right to left
+        \item Place elements in $B$ based on $C$ values
+        \item After first cycle (processing last element 8):
+            \begin{itemize}[noitemsep]
+                \item $B[13] = 8$ (\textbf{Answer to Question 2})
+                \item $C[8]$ is decremented to 12 (\textbf{Answer to Question 3})
+            \end{itemize}
+        \item Final sorted array: $B = [3,3,3,4,4,4,5,5,5,6,7,8,8]$
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Key Insights:}
+\begin{itemize}[noitemsep]
+    \item The cumulative sum array $C$ helps maintain stability by tracking positions
+    \item Processing from right to left ensures stability
+    \item $C[i]$ represents the position after which the next element $i$ should be placed
+    \item Each placement decrements the corresponding counter in $C$
+\end{itemize}
+
+\textbf{Final Answers:}
+\begin{enumerate}[noitemsep]
+    \item $C[7] = 11$
+    \item $B[13] = 8$
+    \item $C[8] = 12$
+\end{enumerate}
