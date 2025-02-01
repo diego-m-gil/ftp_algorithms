@@ -8,6 +8,11 @@ A comprehensive LaTeX-based cheat sheet covering fundamental algorithms and data
 - Graph Algorithms
 - And more...
 
+## Latest Version
+[<img src="FTP_Algorithms_HS24_CheatSheet.pdf" width="300"/>](FTP_Algorithms_HS24_CheatSheet.pdf)
+
+You can download the latest version of the cheat sheet [here](FTP_Algorithms_HS24_CheatSheet.pdf).
+
 ## Structure
 - `main.tex`: Main document that includes all other files
 - `weeks1-7.tex`: Theoretical content for weeks 1-7
@@ -18,8 +23,8 @@ A comprehensive LaTeX-based cheat sheet covering fundamental algorithms and data
 1. Ensure you have a LaTeX distribution installed (e.g., MiKTeX, TeX Live)
 2. Compile using pdflatex:
    ```bash
-   pdflatex main.tex
-   pdflatex main.tex  # Run twice for proper TOC generation
+   pdflatex -jobname=FTP_Algorithms_HS24_CheatSheet main.tex
+   pdflatex -jobname=FTP_Algorithms_HS24_CheatSheet main.tex  # Run twice for proper TOC generation
    ```
 
 ## Contributing
