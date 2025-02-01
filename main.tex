@@ -1,0 +1,74 @@
+\documentclass[11pt,a4paper,twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{tikz}
+\usetikzlibrary{arrows,arrows.meta,positioning,calc,shapes.geometric,decorations.markings}
+\usepackage[margin=1cm,footskip=0.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{tocloft}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{tabularx}
+
+% Column separator and spacing
+\setlength{\columnseprule}{0.4pt}
+\setlength{\columnsep}{1cm}
+
+% Better paragraph and page breaks
+\widowpenalty=10000
+\clubpenalty=10000
+\raggedbottom
+
+% Float control
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{4}
+\setcounter{totalnumber}{10}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.7}
+
+% Remove section numbers from TOC
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% Title settings
+\title{\textbf{FTP\_Algorithms}\\
+       \large Cheat Sheet}
+\author{Diego Gil}
+\date{Herbstsemester 2024/25}
+
+\tikzset{
+    >={Stealth[]},
+    every picture/.style={line width=0.5pt},
+    vertex/.style={circle,draw,minimum size=20pt,inner sep=0pt}
+}
+
+\begin{document}
+\onecolumn
+\maketitle
+
+\twocolumn
+\tableofcontents
+\newpage
+
+\clearpage
+
+% Content from weeks 1-7
+\input{weeks1-7}
+\clearpage
+% Content from weeks 8-14
+\input{weeks8-14}
+
+\clearpage
+% Exercises
+\input{exercises}
+\input{exercises-part2}
+\input{exercises-part3}
+
+\end{document}

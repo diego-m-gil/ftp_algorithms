@@ -1,0 +1,14 @@
+## LaTeX temporary files
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+## Generated PDFs (optional - comment out if you want to track PDFs)
+# *.pdf
+
+## Build directory
+build/

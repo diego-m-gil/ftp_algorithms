@@ -1,0 +1,75 @@
+\subsection{Exercise 4.1: Quicksort Partitioning Worst Case}
+\textbf{Problem:} Prove that the worst case in Partitioning Algorithm (for Quicksort) has running time $\Theta(n^2)$, where $n$ is the cardinality of the set of elements in the partitioning.
+
+\textbf{Solution:} We provide both an intuitive proof and a formal proof by induction.
+
+\textbf{Part 1: Intuitive Proof}
+\begin{enumerate}[leftmargin=*,noitemsep]
+    \item \textbf{Worst Case Scenario:}
+    \begin{itemize}[noitemsep]
+        \item At each step, we get maximally unbalanced partitions:
+        \item A $k-1$ element array and an empty array
+        \item This happens when pivot is always smallest/largest element
+    \end{itemize}
+
+    \item \textbf{Recurrence Relation:}
+    Let $T(n)$ be the running time of Quicksort with Partition:
+    \begin{itemize}[noitemsep]
+        \item Splitting time is linear: $\Theta(k)$ for array of size $k$
+        \item Base case: $T(0)$ is constant, so $T(0) = \Theta(1)$
+        \item For size $k$: $T(k) = T(k-1) + T(0) + \Theta(k)$
+        \item Simplifies to: $T(k) = T(k-1) + \Theta(k)$
+    \end{itemize}
+
+    \item \textbf{Solving the Recurrence:}
+    \begin{align*}
+        T(n) &= T(n-1) + \Theta(n) \\
+        &= T(n-2) + \Theta(n-1) + \Theta(n) \\
+        &= T(n-3) + \Theta(n-2) + \Theta(n-1) + \Theta(n) \\
+        &\vdots \\
+        &= T(0) + \Theta(1) + \Theta(2) + ... + \Theta(n-1) + \Theta(n)
+    \end{align*}
+
+    \item \textbf{Final Step:}
+    \begin{itemize}[noitemsep]
+        \item Sum is arithmetic series: $1 + 2 + ... + (n-1) + n$
+        \item Using identity: $1 + 2 + ... + n = \frac{n(n+1)}{2}$
+        \item Therefore: $T(n) = \Theta(\frac{n(n+1)}{2}) = \Theta(n^2)$
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Part 2: Formal Proof by Induction}
+\begin{enumerate}[leftmargin=*,noitemsep]
+    \item \textbf{Claim:} $T(n) = \Theta(n^2)$ for worst-case running time
+    
+    \item \textbf{Precise Statement:}
+    \begin{itemize}[noitemsep]
+        \item For all $0 < m < n$: $T(m) = \Theta(m^2)$
+        \item This means $\exists c_1,d_1 > 0: c_1m^2 \leq T(m) \leq d_1m^2$
+        \item Partition time $P(m) = \Theta(m)$, so $\exists c_2,d_2 > 0: c_2m \leq P(m) + T(0) \leq d_2m$
+    \end{itemize}
+
+    \item \textbf{Constants:}
+    \begin{itemize}[noitemsep]
+        \item Let $c = \min\{c_1,c_2\}$ and $d = \max\{d_1,d_2,1\}$
+        \item Then for all $m \geq n-1$: $cm^2 \leq T(m) \leq dm^2$
+        \item And for all $m \geq n$: $2cm \leq T(0) + P(m) \leq dm$
+    \end{itemize}
+
+    \item \textbf{Inductive Step:}
+    \begin{align*}
+        T(n) &= T(n-1) + T(0) + P(n) \\
+        c(n-1)^2 + 2cn &= cn^2 - 2cn + 1 + 2cn = cn^2 + 1 > cn^2 \\
+        d(n-1)^2 + dn &= dn^2 - 2dn + 1 + dn = dn^2 - dn + 1 \leq dn^2
+    \end{align*}
+
+    Therefore: $cn^2 < T(n) \leq dn^2$, proving $T(n) = \Theta(n^2)$
+\end{enumerate}
+
+\textbf{Key Insights:}
+\begin{itemize}[noitemsep]
+    \item The worst case occurs with extremely unbalanced partitions
+    \item Each partition step costs linear time
+    \item The cumulative effect leads to quadratic runtime
+    \item Both intuitive and formal proofs confirm $\Theta(n^2)$ complexity
+\end{itemize}
