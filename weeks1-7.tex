@@ -226,6 +226,46 @@ $P = \{(1,3), (12,1), (4,5), (5,4),$ \\
 
 \FloatBarrier
 
+\subsubsection{KD-Tree Implementation Details}
+\textbf{Definition:} A k-dimensional tree (KD-tree) is a space-partitioning data structure for organizing points in a k-dimensional space.
+
+\textbf{Properties:}
+\begin{itemize}[noitemsep,leftmargin=*]
+    \item Each node represents a point in k-dimensional space
+    \item Each non-leaf node splits space into two parts
+    \item Splits alternate between dimensions at each level
+    \item Points are stored in a binary tree structure
+\end{itemize}
+
+\textbf{BUILDKDTREE Algorithm:}
+\begin{enumerate}[noitemsep,leftmargin=*]
+    \item Input: Set of points $P$ and depth $d$
+    \item If $|P| = 1$: return leaf node with the point
+    \item Determine split dimension: $d \bmod k$ (k=2 for 2D)
+    \item Sort points by split dimension
+    \item Find median point $m$
+    \item Split points into $P_L$ (< $m$) and $P_R$ (> $m$)
+    \item Recursively build left and right subtrees:
+        \begin{itemize}[noitemsep]
+            \item $T_L = \text{BUILDKDTREE}(P_L, d+1)$
+            \item $T_R = \text{BUILDKDTREE}(P_R, d+1)$
+        \end{itemize}
+    \item Return node with $(m, T_L, T_R)$
+\end{enumerate}
+
+\textbf{Implementation Details:}
+\begin{itemize}[noitemsep,leftmargin=*]
+    \item Even depths: split on x-coordinate (vertical line)
+    \item Odd depths: split on y-coordinate (horizontal line)
+    \item Each internal node stores:
+        \begin{itemize}[noitemsep]
+            \item Split point coordinates
+            \item Split dimension
+            \item Pointers to left/right children
+        \end{itemize}
+    \item Leaf nodes store single points
+\end{itemize}
+
 \subsubsection{Binary Search Trees (BST)}
 \textbf{Definition:} A binary tree where for each node $x$:
 \begin{itemize}[noitemsep,leftmargin=*]

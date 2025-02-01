@@ -266,3 +266,56 @@ Answer the following questions:
     \item Horizontal splits (odd depths) compare y-coordinates
     \item All original points end up as leaves
 \end{itemize}
+
+\subsection{Exercise 5.2: BUILDKDTREE Complexity}
+\textbf{Problem:} (It is enough to give an intuitive idea) Prove that the BUILDKDTREE for a set of $n$ points has running time $O(n \log n)$ and uses $O(n)$ storage.
+
+\textbf{Solution:} Let's break this down into two parts: storage complexity and runtime complexity.
+
+\textbf{1. Storage Complexity $O(n)$:}
+\begin{itemize}[noitemsep]
+    \item Each splitting line divides points into two equal parts (up to unity)
+    \item For $n = 2^k$ points, we need $2^k - 1$ lines (internal nodes)
+    \item For splitting 2, the total nodes (parents + leaves) is:
+        \[ 2^k + 2^{k-1} = n + n/2 = 3n/2 < 3n \]
+    \item For $n$ not a power of 2, there exists $t$ where $2^{t-1} < n < 2^t$
+    \item Number of internal nodes $n_p$ is bounded by:
+        \[ 2^{t-2} < n_p < 2^{t-1} \]
+    \item Total nodes (parents + leaves) satisfies:
+        \[ 3 \cdot 2^{t-2} < n + n_p < 3 \cdot 2^{t-1} \]
+    \item Therefore: $n + n_p < 3 \cdot 2^{t-1} < 3n$
+    \item Each node uses $O(1)$ storage
+    \item Total storage: $O(1) \cdot O(n) = O(n)$
+\end{itemize}
+
+\textbf{2. Runtime Complexity $O(n \log n)$:}
+\begin{itemize}[noitemsep]
+    \item BUILDKDTREE is recursive:
+        \begin{itemize}[noitemsep]
+            \item Each recursion splits $n$ points into two $n/2$ subsets
+            \item Split cost is linear ($O(n)$): finding median in x or y coordinates
+        \end{itemize}
+    \item Building time $T(n)$ follows the recurrence:
+        \[ T(n) = \begin{cases}
+            O(1) & \text{if } n = 1 \\
+            2T(n/2) + O(n) & \text{if } n > 1
+        \end{cases} \]
+    \item By Master Theorem (as in Merge-Sort):
+        \begin{itemize}[noitemsep]
+            \item $a = 2$ (subproblems)
+            \item $b = 2$ (size reduction)
+            \item $f(n) = O(n)$ (split cost)
+            \item Case 1: $f(n) = O(n) = \Theta(n^{\log_2 2}) = \Theta(n)$
+            \item Therefore: $T(n) = O(n \log n)$
+        \end{itemize}
+\end{itemize}
+
+\textbf{Key Insights:}
+\begin{itemize}[noitemsep]
+    \item Storage is linear because each point becomes exactly one leaf node
+    \item Runtime is $O(n \log n)$ due to:
+        \begin{itemize}[noitemsep]
+            \item Linear-time splitting at each level
+            \item Logarithmic number of levels in the tree
+        \end{itemize}
+\end{itemize}
