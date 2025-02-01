@@ -190,6 +190,52 @@ Answer the following questions:
 
 \begin{figure}[H]
     \centering
+    \begin{tikzpicture}[scale=0.4]
+        % Grid
+        \draw[very thin,gray!20] (0,0) grid (15,15);
+        \draw[->,thick] (0,0) -- (15,0) node[right] {x};
+        \draw[->,thick] (0,0) -- (0,15) node[above] {y};
+        
+        % Points with labels
+        \node[circle,fill,inner sep=1.5pt] (x1) at (1,3) {};
+        \node[font=\tiny] at (1,3.7) {x1};
+        
+        \node[circle,fill,inner sep=1.5pt] (x2) at (12,1) {};
+        \node[font=\tiny] at (12,1.7) {x2};
+        
+        \node[circle,fill,inner sep=1.5pt] (x3) at (4,5) {};
+        \node[font=\tiny] at (4,5.7) {x3};
+        
+        \node[circle,fill,inner sep=1.5pt] (x4) at (5,4) {};
+        \node[font=\tiny] at (5,4.7) {l1};
+        
+        \node[circle,fill,inner sep=1.5pt] (x5) at (10,11) {};
+        \node[font=\tiny] at (10,11.7) {x5};
+        
+        \node[circle,fill,inner sep=1.5pt] (x6) at (8,2) {};
+        \node[font=\tiny] at (8,2.7) {x6};
+        
+        \node[circle,fill,inner sep=1.5pt] (x7) at (2,7) {};
+        \node[font=\tiny] at (2,7.7) {x7};
+        
+        % Splitting lines
+        % Root split (vertical, x=5)
+        \draw[blue,thick] (5,0) -- (5,15) node[above] {$\ell_1$};
+        
+        % Left side splits
+        \draw[red,thick] (0,7) -- (5,7) node[left] {$\ell_2$};
+        \draw[blue,thick] (2,3) -- (2,7) node[left] {$\ell_4$};
+        \draw[blue,thick] (4,7) -- (4,11) node[right] {$\ell_5$};
+        
+        % Right side splits
+        \draw[red,thick] (5,11) -- (15,11) node[right] {$\ell_3$};
+        \draw[blue,thick] (10,1) -- (10,11) node[right] {$\ell_6$};
+    \end{tikzpicture}
+    \caption*{Splitting lines in 2D plane}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
     \begin{tikzpicture}[
         level distance=1cm,
         level 1/.style={sibling distance=3cm},
@@ -216,33 +262,6 @@ Answer the following questions:
             };
     \end{tikzpicture}
     \caption*{Final KD-Tree structure}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}[scale=0.4]
-        % Grid
-        \draw[very thin,gray!20] (0,0) grid (15,15);
-        \draw[->,thick] (0,0) -- (15,0) node[right] {x};
-        \draw[->,thick] (0,0) -- (0,15) node[above] {y};
-        
-        % Points
-        \foreach \x/\y/\label in {
-            1/3/x1, 12/1/x2, 4/5/x3, 5/4/l1, 10/11/x5, 8/2/x6, 2/7/x7
-        } {
-            \node[circle,fill,inner sep=1pt] at (\x,\y) {};
-            \node[font=\tiny] at (\x,\y+0.5) {\label};
-        }
-        
-        % Splitting lines
-        \draw[blue,thick] (5,0) -- (5,15) node[above] {$\ell_1$};
-        \draw[red,thick] (0,7) -- (5,7) node[left] {$\ell_2$};
-        \draw[red,thick] (5,11) -- (15,11) node[right] {$\ell_3$};
-        \draw[blue,thick] (2,3) -- (2,7) node[left] {$\ell_4$};
-        \draw[blue,thick] (4,7) -- (4,11) node[right] {$\ell_5$};
-        \draw[blue,thick] (10,1) -- (10,11) node[right] {$\ell_6$};
-    \end{tikzpicture}
-    \caption*{Splitting lines in 2D plane}
 \end{figure}
 
 \textbf{3. Answers:}
