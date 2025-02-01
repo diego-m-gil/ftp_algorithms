@@ -7,8 +7,9 @@
 *.fls
 *.fdb_latexmk
 
-## Generated PDFs (optional - comment out if you want to track PDFs)
-# *.pdf
+## Generated PDFs (except our main output)
+*.pdf
+!FTP_Algorithms_HS24_CheatSheet.pdf
 
 ## Build directory
 build/
