@@ -141,3 +141,122 @@
     \item $B[13] = 8$
     \item $C[8] = 12$
 \end{enumerate}
+
+\subsection{Exercise 5.1: BUILDKDTREE Algorithm}
+\textbf{Problem:} We apply BUILDKDTREE$(P,0)$ to the following set $P$ of points in the plane:
+\[ P = \{(1,3), (12,1), (4,5), (5,4), (10,11), (8,2), (2,7)\} \]
+
+Answer the following questions:
+\begin{enumerate}[leftmargin=*,noitemsep]
+    \item Give the height of the tree
+    \item How many leaves are there?
+    \item The second leaf (starting from left) is the point with first coordinate...
+\end{enumerate}
+
+\textbf{Solution:} Let's solve this step by step following the BUILDKDTREE algorithm.
+
+\textbf{1. Algorithm Review:}
+\begin{itemize}[noitemsep]
+    \item At even depths (0,2,...): split on x-coordinate (vertical line)
+    \item At odd depths (1,3,...): split on y-coordinate (horizontal line)
+    \item Each split creates a new level in the tree
+    \item Points are recursively divided into left and right subsets
+\end{itemize}
+
+\textbf{2. Step-by-Step Construction:}
+\begin{enumerate}[leftmargin=*,noitemsep]
+    \item \textbf{Root Level (depth 0, x-split):}
+    \begin{itemize}[noitemsep]
+        \item Sort by x-coordinate: $(1,3), (2,7), (4,5), (5,4), (8,2), (10,11), (12,1)$
+        \item Median point $(5,4)$ becomes root $\ell_1$
+        \item Left subset: $\{(1,3), (2,7), (4,5)\}$
+        \item Right subset: $\{(8,2), (10,11), (12,1)\}$
+    \end{itemize}
+
+    \item \textbf{Level 1 (depth 1, y-split):}
+    \begin{itemize}[noitemsep]
+        \item Left subset sorted by y: $(1,3), (4,5), (2,7)$
+        \item Right subset sorted by y: $(12,1), (8,2), (10,11)$
+        \item Medians $(2,7)$ and $(10,11)$ become nodes $\ell_2$ and $\ell_3$
+    \end{itemize}
+
+    \item \textbf{Level 2 (depth 2, x-split):}
+    \begin{itemize}[noitemsep]
+        \item Split remaining points into leaf nodes
+        \item Left of $\ell_2$: $(1,3), (4,5)$ become leaves under $\ell_4$
+        \item Left of $\ell_3$: $(8,2), (12,1)$ become leaves under $\ell_6$
+    \end{itemize}
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+        level distance=1cm,
+        level 1/.style={sibling distance=3cm},
+        level 2/.style={sibling distance=1.5cm},
+        every node/.style={circle,draw,inner sep=1pt,font=\small}
+    ]
+        \node {$\ell_1$}
+            child {node {$\ell_2$}
+                child {node {$\ell_4$}
+                    child {node {$x_1$}}
+                    child {node {$x_4$}}
+                }
+                child {node {$\ell_5$}
+                    child {node {$x_7$}}
+                    child {node {$x_3$}}
+                }
+            }
+            child {node {$\ell_3$}
+                child {node {$\ell_6$}
+                    child {node {$x_6$}}
+                    child {node {$x_2$}}
+                }
+                child {node {$x_5$}}
+            };
+    \end{tikzpicture}
+    \caption*{Final KD-Tree structure}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.4]
+        % Grid
+        \draw[very thin,gray!20] (0,0) grid (15,15);
+        \draw[->,thick] (0,0) -- (15,0) node[right] {x};
+        \draw[->,thick] (0,0) -- (0,15) node[above] {y};
+        
+        % Points
+        \foreach \x/\y/\label in {
+            1/3/x1, 12/1/x2, 4/5/x3, 5/4/l1, 10/11/x5, 8/2/x6, 2/7/x7
+        } {
+            \node[circle,fill,inner sep=1pt] at (\x,\y) {};
+            \node[font=\tiny] at (\x,\y+0.5) {\label};
+        }
+        
+        % Splitting lines
+        \draw[blue,thick] (5,0) -- (5,15) node[above] {$\ell_1$};
+        \draw[red,thick] (0,7) -- (5,7) node[left] {$\ell_2$};
+        \draw[red,thick] (5,11) -- (15,11) node[right] {$\ell_3$};
+        \draw[blue,thick] (2,3) -- (2,7) node[left] {$\ell_4$};
+        \draw[blue,thick] (4,7) -- (4,11) node[right] {$\ell_5$};
+        \draw[blue,thick] (10,1) -- (10,11) node[right] {$\ell_6$};
+    \end{tikzpicture}
+    \caption*{Splitting lines in 2D plane}
+\end{figure}
+
+\textbf{3. Answers:}
+\begin{enumerate}[noitemsep]
+    \item Height of the tree = 3 (counting levels from 0)
+    \item Number of leaves = 7 (each original point becomes a leaf)
+    \item Second leaf from left = $x_4 = (4,5)$
+\end{enumerate}
+
+\textbf{Key Insights:}
+\begin{itemize}[noitemsep]
+    \item The tree is built by alternating between x and y coordinates
+    \item Each internal node represents a splitting line
+    \item Vertical splits (even depths) compare x-coordinates
+    \item Horizontal splits (odd depths) compare y-coordinates
+    \item All original points end up as leaves
+\end{itemize}
