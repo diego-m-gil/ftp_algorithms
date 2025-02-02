@@ -1,4 +1,4 @@
-\section{Exercises Part 2}
+%\section{Exercises Part 2}
 \subsection{Exercise 8.1: Drawing 5 Lines}
 \textbf{Problem:} Prove that you cannot draw 5 lines on the Euclidean plane in such a way that each line cuts exactly 3 other lines.
 
@@ -136,3 +136,273 @@ $E_T$ = \{(A,D), (D,F), (A,B), (B,E), (E,C), (E,G)\}
 \item \textbf{Add Edge:} Include this edge and vertex in the tree.
 \item \textbf{Repeat:} Continue until all vertices are included in the tree.
 \end{enumerate}
+
+\subsection{Exercise 9.1: Time Complexity of TSP Heuristics}
+\textbf{Problem:}
+\begin{enumerate}
+\item[a)] What is the complexity of the Nearest Neighbor heuristic for the TSP?
+\item[b)] Same question for the pilot method, if the Nearest Neighbor heuristic is used as pilot.
+\item[c)] Same question for a beam search procedure, if $B$ branches are retained at each level, and the tree is examined up to $k$ levels ahead, but the retained branches are only extended by one node per step.
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{enumerate}
+\item[a)] Nearest Neighbor has time complexity $O(n^2)$, since there are $n-1$ cities that need to be added to the tour, and at each step the nearest neighbor (to the last city added) out of the $j$ remaining cities has to be computed, which takes $O(j)$ (with $j = n-1, n-2, \ldots, 2, 1$) for each city. So it’s $O((n-1) + (n-2) + \ldots + 2 + 1) = O(n^2)$.
+\item[b)] The Pilot Method with Nearest Neighbor has time complexity $O(n^4)$, since there are $n-1$ cities that need to be added to the tour, and at each step, the best partial tour so far has to be extended in $j$ different ways by one of the $j$ remaining cities each, and then using the Nearest Neighbor strategy. According to Subtask a) (with $j = n-1, n-2, \ldots, 2$) we get $O((n-1)*(n-2)^2) + O((n-2)*(n-3)^2) + \ldots + O(2*1^2) = O(n^4)$.
+\item[c)] Beam Search has time complexity $O(B*n^{k+1})$, since there are $n-1$ cities that need to be added to the tour. In each step, the $B$ best partial tours so far are extended by $k$ cities each, out of all the $j$ remaining cities (with $j = n-2, n-3, \ldots, k$). So it’s $O(B*(n-2)^k) + O(B*(n-3)^k) + \ldots + O(B*k^k) = O(B*n^{k+1})$. Note, that this is an upper bound which is the more pessimistic, the larger $k$ is chosen in comparison to $n$.
+\end{enumerate}
+
+\subsection{Exercise 9.2: Comparing Heuristics for TSP}
+\textbf{Problem:}
+\begin{enumerate}
+\item[a)] Implement the Nearest Neighbor heuristic for TSP. Note the following:
+\begin{itemize}
+\item A stub \texttt{tsp\_nearest\_neighbor.py} is provided in the Python framework in the subfolder \texttt{Python -> heuristics}. This stub is integrated in the runnable main demo script \texttt{demo\_tsp\_nearest\_neighbor.py} on the top-level folder \texttt{Python}.
+\item There are several ready-to-use TSP instances provided in the subfolder \texttt{Python -> heuristics -> problems -> tsp -> instances}, which may be selected in the main demo script \texttt{demo\_tsp\_nearest\_neighbor.py}.
+\item Check the file \texttt{instance.py} in subfolder \texttt{Python -> heuristics -> problems -> tsp -> utils}, to get familiar with the data structure used to represent a TSP instance.
+\end{itemize}
+\item[b)] Compare the computational time and the quality of the solutions of:
+\begin{itemize}
+\item Nearest Neighbor (from part a),
+\item Random Sampling (provided ready-to-use: \texttt{demo\_tsp\_random\_sampling.py}),
+\item Random Best Insertion (provided ready-to-use: \texttt{demo\_tsp\_greedy\_insertion\_random.py}).
+\end{itemize}
+\end{enumerate}
+
+\subsection{Exercise 9.3: "Good" Algorithm for TSP}
+\textbf{Problem:}
+Implement a good heuristic algorithm for TSP. You can develop and implement your own ideas, or use some of the methods presented in the lecture so far.
+
+Evaluate your heuristic on the provided instances data sets in the Python framework in subfolder \texttt{Python -> heuristics -> problems -> tsp -> instances}. 
+
+\subsection{Exercise 10.1: Manual Local Searches}
+\textbf{Problem:}
+An integer function \([-7, 7] \times [-6, 7] \to [-10, 754]\) is explicitly given in a table. The moves consist of modifying a single variable by \(+/-\) one unit. The moves are ordered as follows: \((+1, 0), (0, +1), (-1, 0)\) and \((0, -1)\). The goal is to minimize the function value by means of a local search using:
+\begin{enumerate}
+\item[a)] First Improving Move strategy, starting from the upper right corner \((x=7, y=-6)\).
+\item[b)] Best Improving Move strategy, starting from upper left corner \((x=-7, y=-6)\).
+\end{enumerate}
+
+\textbf{Steps to Solve:}
+\begin{enumerate}
+\item \textbf{Understand the Move Strategies:}
+  \begin{itemize}
+  \item \textbf{First Improving Move:} Choose the first move that improves the function value.
+  \item \textbf{Best Improving Move:} Evaluate all possible moves and choose the one that provides the greatest improvement.
+  \end{itemize}
+\item \textbf{Apply the Strategies:}
+  \begin{itemize}
+  \item Start at the specified corner and apply the move strategy.
+  \item For First Improving Move, stop as soon as an improvement is found.
+  \item For Best Improving Move, evaluate all moves and select the best one.
+  \end{itemize}
+\item \textbf{Iterate:} Repeat the process until no further improvements can be made.
+\item \textbf{Analyze Results:} Compare the paths and final values obtained by each strategy.
+\end{enumerate}
+
+\subsection{Exercise 10.2: 2-opt and 3-opt Moves for TSP}
+\textbf{Problem:}
+For a Travelling Salesperson Problem instance with 8 cities, consider the tour:
+
+\texttt{c1-c2-c3-c4-c5-c6-c7-c8-c1.}
+
+\begin{enumerate}
+\item[a)] Give the resulting tour of applying the 3-opt move, where the edges c2-c3 and c4-c5 and c6-c7 are replaced, such that no sub trail is reversed.
+\item[b)] Same as in a), but this time the two shortest sub trails are reversed.
+\item[c)] Give the resulting tour of applying the 2-opt move, where the edges c2-c3 and c6-c7 are replaced, such that the sub trail containing c1 is not reversed.
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{enumerate}
+\item[a)] \texttt{c1-c2-c5-c6-c3-c4-c7-c8-c1.}
+\item[b)] \texttt{c1-c2-c4-c3-c6-c5-c7-c8-c1.}
+\item[c)] \texttt{c1-c2-c6-c5-c4-c3-c7-c8-c1.}
+\end{enumerate}
+
+\subsection{Exercise 10.3: Greedy for Knapsack Problem}
+\textbf{Problem:}
+The Knapsack Problem is defined as follows: Given a set of \(n\) items numbered from 1 up to \(n\), each with a weight \(w_i\) and a value \(v_i\), along with a maximum weight capacity \(W\) of the knapsack,
+
+\[\max \sum_{i=1}^{n} v_i x_i \quad \text{subject to} \quad \sum_{i=1}^{n} w_i x_i \leq W \quad \text{and} \quad x_i \in \{0,1\}.\]
+
+\begin{enumerate}
+\item[a)] Consider a "Naïve Greedy" algorithm, which always takes the item with maximum value that still fits into the knapsack. Show that this algorithm can create arbitrarily bad solutions.
+\item[b)] Algorithm "Smarter Greedy" works as follows: compute \(v_i/w_i\) for each item, and sort all items in descending order. Then take items in this order as long as they fit into the knapsack. This algorithm can create good solutions, but also bad ones. Show that there exists an example with two items where the solution is arbitrarily bad.
+\item[c)] What are reasonable neighbourhoods for the Knapsack Problem?
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{enumerate}
+\item[a)] Let \(n = W\) and \(v_1 = 2, w_1 = W, v_2 = v_3 \ldots = v_n = 1, w_2 = w_3 = \ldots = w_n = 1\). Then Naive Greedy takes item 1 with value 2, whereas a better solution would be to take all other items with value \(n-1\).
+\item[b)] Worst case for Smarter Greedy: Let \(v_1 = 2, w_1 = 1, v_2 = W\) and \(w_2 = W\). Then Smarter Greedy takes item 1, but item 2 would be much better.
+\item[c)] Potential Neighbourhoods:
+  \begin{itemize}
+  \item Flip one bit \(x_i\), if result is a valid solution.
+  \item Exchange one item with another, if result is a valid solution.
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Exercise 10.4: Knapsack Problem with Simulated Annealing}
+\textbf{Problem:}
+For the Knapsack Problem instance Knapsack\_P08, find the optimal solution using Simulated Annealing. The instance is defined as follows:
+
+\begin{itemize}
+\item \(N = 24\)
+\item \(W = 6404180\)
+\item Weights: 382745, 799601, 909247, 729069, 467902, 44328, 34610, 698150, 823460, 903959, 853665, 551830, 610856, 670702, 488960, 951111, 323046, 446298, 931161, 31385, 496951, 264724, 224916, 169684
+\item Values: 825594, 1677009, 1676628, 1523970, 943972, 97426, 69666, 1296457, 1679693, 1902996, 1844992, 1049289, 1252836, 1319836, 953277, 2067538, 675367, 853655, 1826027, 65731, 901489, 577243, 466257, 369261
+\end{itemize}
+
+\textbf{Solution:}
+Optimal Solution for Instance Knapsack\_P08:
+\begin{itemize}
+\item Value = 13549094
+\item Items: 1 1 0 1 1 1 0 0 1 1 0 1 0 0 1 0 0 0 0 1 1 1
+\end{itemize}
+
+\subsection{Exercise 11.1: Manual Tabu Search}
+\textbf{Problem:}
+An integer function \([-7, 7] \times [-6, 7] \to [-10, 754]\) is explicitly given in a table. A Tabu Search is used to find the minimum of this function. The neighbourhood consists of increasing or decreasing the value of one variable by 1. The tabu condition forbids changing back a variable that has been changed at most \(t\) iterations before. In every iteration, the best possible move is taken, even if it increases the function value. The search stops if no allowed move exists or if 25 iterations have been performed.
+
+\begin{enumerate}
+\item[a)] Start a tabu search with \(t=3\) at \((x, y) = (-7, 7)\).
+\item[b)] Start a tabu search with \(t=1\) at \((x, y) = (-7, -6)\).
+\end{enumerate}
+
+\textbf{Steps to Solve:}
+\begin{enumerate}
+\item \textbf{Understand the Tabu Condition:}
+  \begin{itemize}
+  \item Track moves and prevent reversing changes made within the last \(t\) iterations.
+  \end{itemize}
+\item \textbf{Apply the Search:}
+  \begin{itemize}
+  \item Start at the specified point and apply the best move strategy.
+  \item Record each move and apply the tabu condition.
+  \end{itemize}
+\item \textbf{Iterate:} Continue until no further moves are allowed or 25 iterations are reached.
+\item \textbf{Analyze Results:} Compare the paths and final values obtained by each strategy.
+\end{enumerate}
+
+\subsection{Exercise 11.2: Tabu Search on Knapsack Problem}
+\textbf{Problem:}
+Maximize \(11x_1 + 10x_2 + 9x_3 + 12x_4 + 10x_5 + 6x_6 + 7x_7 + 5x_8 + 3x_9 + 8x_{10}\)
+subject to \(33x_1 + 27x_2 + 16x_3 + 14x_4 + 29x_5 + 30x_6 + 31x_7 + 33x_8 + 14x_9 + 18x_{10} \leq 100\)
+
+\(x_i \in \{0,1\}, i = 1, \ldots, 10\)
+
+Initial solution: \((0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\), revenue: 0
+
+Move: flip a bit \(x_i \leftarrow 1 - x_i\)
+
+Tabu condition: don't flip the same bit for 3 (complete) iterations
+
+Tabu list: iteration AFTER which a bit can be flipped again
+
+Initial tabu list: \((0, 0, 0, 0, 0, 0, 0, 0, 0, 0)\)
+
+\textbf{Solution:}
+Compute the 10 first iterations using the greedy strategy:
+\begin{itemize}
+\item Insert the object with maximum value that fits (breaking ties by choosing the object weighing less).
+\item If no further object can be inserted, remove the object with minimal value (breaking ties by choosing the heavier object).
+\end{itemize}
+
+\subsection{Exercise 11.3: Neighbourhood Analysis for CVRP}
+\textbf{Problem:}
+Analyse the properties:
+\begin{itemize}
+\item Size of Neighbourhood
+\item Connectivity
+\item Run time complexity for one move
+\end{itemize}
+for the following neighbourhoods for the Capacitated Vehicle Routing Problem (CVRP):
+
+\begin{enumerate}
+\item[a)] Neighborhood description: Select customer X randomly -- Select destination tour randomly -- Select insertion position for X in destination tour randomly.
+\item[b)] Neighborhood description: Select customer X randomly -- Select destination tour randomly -- Select best insertion position for X in destination tour.
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{enumerate}
+\item[a)] Properties:
+  \begin{itemize}
+  \item Size of Neighborhood: \(O(n \cdot (\sum_{i=1}^{m}(1 + \text{number of cust. in tour } T_i))) = O(n^2)\).
+  \item Connectivity: No, since the number of tours cannot change.
+  \item Run Time for one move: \(O(1)\), since only randomly chosen vertices and the corresponding edges in the original and destination tour are changed.
+  \end{itemize}
+\item[b)] Properties:
+  \begin{itemize}
+  \item Size of Neighborhood: \(O(n \cdot m) = O(n^2)\) (worst case: every customer is in a tour on his own).
+  \item Connectivity: No, since the number of tours cannot change.
+  \item Run Time for one move: \(O(\text{number of cust. in destination tour}) = O(n)\), since best insertion position has to be found in destination tour (worst case: all customers in a single tour).
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Exercise 12.1: Ant Colony Optimization for TSP}
+\textbf{Problem:}
+If a meta heuristic for a certain problem shall be implemented, then typically there are several implementations already available on the internet. In this exercise, your task is to find, evaluate and optimize one of these.
+
+\begin{enumerate}
+\item[a)] Search an existing implementation of ACO for TSP from the internet.
+\item[b)] Evaluate the performance and stability of the tool for various instances (e.g. by comparing solutions to those computed with the algorithms from previous exercises).
+\item[c)] Experiment with various settings for the parameters of your ant system.
+\item[d)] Apply your "best" setting for the selected algorithm to the standard instances of TSP (see Exercises of Lecture 2) and report your results at:
+
+\end{enumerate}
+
+\textbf{Solution:}
+An implementation of ACO for TSP can be found e.g. at:
+
+\url{https://github.com/ppoffice/ant-colony-tsp}
+
+\subsection{Exercise 13.1: Order-1 and Partially Mapped Crossover}
+\textbf{Problem:}
+Apply the following crossover techniques to two permutations, swapping positions 4-7 (in blue):
+
+\begin{enumerate}
+\item[a)] Apply Order-1 Crossover to the following two permutations:
+
+\textbf{P1:} 1 4 2 \textcolor{blue}{8 5 7 3} 6 9
+
+\textbf{P2:} 7 5 3 \textcolor{blue}{1 9 8 6} 4 2
+
+\item[b)] Apply Partially Mapped Crossover to the following two permutations, swapping positions 4-7 (in blue).
+
+\textbf{P1:} 1 4 2 \textcolor{blue}{8 5 7 3} 6 9
+
+\textbf{P2:} 7 5 3 \textcolor{blue}{1 9 8 6} 4 2
+
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{enumerate}
+\item[a)] Order-1 Crossover
+  \begin{itemize}
+  \item \textbf{O1:} 5 7 3 1 9 8 6 4 2
+  \item \textbf{O2:} 1 9 6 8 5 7 3 4 2
+  \end{itemize}
+\item[b)] Partially Mapped Crossover
+  \begin{itemize}
+  \item \textbf{O1:} 7 4 2 1 9 8 6 3 5
+  \item \textbf{O2:} 1 9 6 8 5 7 3 4 2
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Exercise 13.2: Genetic Algorithm for TSP}
+\textbf{Problem:}
+If you want to implement a meta heuristic for a certain problem, there are typically several implementations already available on the internet. In this exercise, your task is to evaluate and optimize one of these.
+
+\begin{enumerate}
+\item[a)] Search an existing implementation of a Genetic Algorithm for TSP from the internet.
+\item[b)] Evaluate the performance and stability of the tool for various sample data (using e.g. the random generator for new solutions from the previous exercises).
+\item[c)] Experiment with various settings for the parameters of your system.
+\item[d)] Apply your "best" setting for the selected algorithm to the standard instances of TSP (see Exercises of Lecture 2) and report your results at:
+
+\url{https://docs.google.com/forms/d/e/1FAIpQLSdUJNjQL0oymeKHRXhznQcUcK67Xh0mPDbM2mOymg1kUDMfNQ/viewform?usp=sf_link}
+\end{enumerate}
+
+\textbf{Solution:}
+An implementation of GA for TSP can be found e.g. at:
+
+\url{https://github.com/maoai/tsp-genetic-python}
