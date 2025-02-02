@@ -8,6 +8,23 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage{hyperref}
 \usepackage{tocloft}
+\renewcommand{\cftsecfont}{\normalsize}
+\renewcommand{\cftsubsecfont}{\normalsize}
+\renewcommand{\cftsubsubsecfont}{\normalsize}
+\renewcommand{\cftsecpagefont}{\normalsize}
+\renewcommand{\cftsubsecpagefont}{\normalsize}
+\renewcommand{\cftsubsubsecpagefont}{\normalsize}
+\setcounter{tocdepth}{3}
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{0.5em}{}
+\renewcommand{\cftsecfont}{\large}
+\renewcommand{\cftsubsecfont}{\normalsize}
+\renewcommand{\cftsubsubsecfont}{\normalsize}
+\renewcommand{\cftsecpagefont}{\large}
+\renewcommand{\cftsubsecpagefont}{\normalsize}
+\renewcommand{\cftsubsubsecpagefont}{\normalsize}
 \usepackage{graphicx}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -16,6 +33,19 @@
 \usepackage{tabularx}
 \usepackage{multicol}
 \usepackage{bookmark}
+\usepackage{newunicodechar}
+\newunicodechar{⌊}{\lfloor}
+\newunicodechar{⌋}{\rfloor}
+\newunicodechar{≤}{\leq}
+\newunicodechar{≥}{\geq}
+\newunicodechar{√}{\sqrt{}}
+\newunicodechar{∞}{\infty}
+\newunicodechar{∅}{\emptyset}
+\newunicodechar{₁}{_1}
+\newunicodechar{₂}{_2}
+\newunicodechar{ᵢ}{_i}
+\newunicodechar{ⱼ}{_j}
+\newunicodechar{Θ}{\Theta}
 
 % Column separator and spacing
 \setlength{\columnseprule}{0.4pt}
@@ -36,14 +66,12 @@
 \renewcommand{\floatpagefraction}{0.7}
 
 % Remove section numbers from TOC
-\setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
 
 % Title settings
-\title{\textbf{FTP\_Algorithms}\\
-       \large Cheat Sheet}
-\author{Diego Gil}
-\date{Herbstsemester 2024/25}
+\title{FTP Algorithms Cheat Sheet}
+\author{}
+\date{}
 
 \tikzset{
     >={Stealth[]},
@@ -52,30 +80,16 @@
 }
 
 \begin{document}
-\maketitle
-
-\begin{multicols}{2}
+%\maketitle
+\renewcommand{\contentsname}{FTP Algorithms Cheat Sheet}
 \tableofcontents
-\end{multicols}
 \newpage
 
 \begin{multicols}{2}
-
 
 \input{weeks1-7.tex}  
-\end{multicols}
-
-\begin{multicols}{2}
-
 \input{weeks8-14.tex}
 
-
-\end{multicols}
-
-\newpage
-
-\section{Exercises Part 1}
-\begin{multicols}{2}
 \input{exercises-part1}
 \input{exercises-part2}
 \input{exercises-part3}

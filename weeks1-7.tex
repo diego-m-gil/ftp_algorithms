@@ -396,7 +396,7 @@ $P = \{(1,3), (12,1), (4,5), (5,4),$ \\
     \item Balancing requires additional mechanisms (AVL, Red-Black)
 \end{itemize}
 
-\clearpage
+
 \section{\texorpdfstring{\underline{Graph Theory}}{Graph Theory}}
 \subsection{Basic Definitions}
 \textbf{Graph:} A graph $G = (V,E)$ consists of:
@@ -542,7 +542,7 @@ $P = \{(1,3), (12,1), (4,5), (5,4),$ \\
     \item Path Reconstruction: Follow $\pi$ pointers from target to source
 \end{itemize}
 
-\clearpage
+
 \section{\texorpdfstring{\underline{Complexity Analysis}}{Complexity Analysis}}
 
 \subsection{Sorting Complexity}
@@ -599,38 +599,12 @@ For a node at index $i$:
 
 \begin{figure}[H]
     \centering
-    \begin{tikzpicture}[scale=0.45,
-        level distance=0.6cm,
-        level 1/.style={sibling distance=1.2cm},
-        level 2/.style={sibling distance=0.6cm},
-        every node/.style={circle,draw,inner sep=1pt,font=\tiny}]
-        \node {A[1]}
-            child {node {A[2]}
-                child {node {A[4]}}
-                child {node {A[5]}}
-            }
-            child {node {A[3]}
-                child {node {A[6]}}
-                child {node {A[7]}}
-            };
-    \end{tikzpicture}
-    \caption*{\footnotesize Array indices in heap}
-\end{figure}
-
-\textbf{MAX-HEAPIFY Operation:}
-\begin{enumerate}
-    \item Compare root with children
-    \item If child is larger, swap with largest child
-    \item Recursively heapify affected subtree
-\end{enumerate}
-
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}[scale=0.45,
-        level distance=0.6cm,
-        level 1/.style={sibling distance=1.2cm},
-        level 2/.style={sibling distance=0.6cm},
-        every node/.style={circle,draw,inner sep=1pt,font=\tiny}]
+    \begin{tikzpicture}[
+        scale=0.8,
+        level distance=1.2cm,
+        level 1/.style={sibling distance=2cm},
+        level 2/.style={sibling distance=1cm},
+        every node/.style={circle, draw, minimum size=0.8cm, inner sep=1pt, font=\normalsize}]
         % Before MAX-HEAPIFY
         \node {2}
             child {node {14}
@@ -643,10 +617,10 @@ For a node at index $i$:
             };
             
         % Arrow
-        \node[draw=none] at (1.5,0) {$\rightarrow$};
+        \node[draw=none] at (3,0) {$\longrightarrow$};
         
         % After MAX-HEAPIFY
-        \begin{scope}[xshift=2.5cm]
+        \begin{scope}[xshift=5cm]
         \node {16}
             child {node {14}
                 child {node {8}}
@@ -658,8 +632,15 @@ For a node at index $i$:
             };
         \end{scope}
     \end{tikzpicture}
-    \caption*{\footnotesize MAX-HEAPIFY example}
+    \caption*{MAX-HEAPIFY example}
 \end{figure}
+
+\textbf{MAX-HEAPIFY Operation:}
+\begin{enumerate}
+    \item Compare root with children
+    \item If child is larger, swap with largest child
+    \item Recursively heapify affected subtree
+\end{enumerate}
 
 \textbf{BUILD-MAX-HEAP Operation:}
 \begin{enumerate}
@@ -669,11 +650,12 @@ For a node at index $i$:
 
 \begin{figure}[H]
     \centering
-    \begin{tikzpicture}[scale=0.45,
-        level distance=0.6cm,
-        level 1/.style={sibling distance=1.2cm},
-        level 2/.style={sibling distance=0.6cm},
-        every node/.style={circle,draw,inner sep=1pt,font=\tiny}]
+    \begin{tikzpicture}[
+        scale=0.8,
+        level distance=1.2cm,
+        level 1/.style={sibling distance=2cm},
+        level 2/.style={sibling distance=1cm},
+        every node/.style={circle, draw, minimum size=0.8cm, inner sep=1pt, font=\normalsize}]
         % Initial array as tree
         \node {4}
             child {node {10}
@@ -686,10 +668,10 @@ For a node at index $i$:
             };
             
         % Arrow
-        \node[draw=none] at (1.5,0) {$\rightarrow$};
+        \node[draw=none] at (3,0) {$\longrightarrow$};
         
         % After BUILD-MAX-HEAP
-        \begin{scope}[xshift=2.5cm]
+        \begin{scope}[xshift=5cm]
         \node {14}
             child {node {10}
                 child {node {4}}
@@ -701,7 +683,7 @@ For a node at index $i$:
             };
         \end{scope}
     \end{tikzpicture}
-    \caption*{\footnotesize BUILD-MAX-HEAP example}
+    \caption*{BUILD-MAX-HEAP example}
 \end{figure}
 
 \textbf{HEAPSORT Operation:}

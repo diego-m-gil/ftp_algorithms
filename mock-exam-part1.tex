@@ -1,74 +1,79 @@
 \newpage
+\clearpage
 
 % Mock Exam Part 1
 
 \subsection{Exercise 1: Running Time}
 
-\subsubsection*{Example 1}
+\subsubsection{Example 1}
 1. (6P) Write the following Theta-classes in non-decreasing order from left to right (i.e., smallest on the left):
 
-\(\Theta(n^2), \Theta(e^{\log_2 n}), \Theta(\sin n), \Theta(\ln^2 n), \Theta(\log_2 n), \Theta(n^3 + \ln(n^2)), \Theta(e^{n^2}), \Theta(e^{\ln(n^4)})\)
+$\Theta(n^2), \Theta(e^{\log_2 n}), \Theta(\sin n), \Theta(\ln^2 n), \Theta(\log_2 n), \Theta(n^3 + \ln(n^2)), \Theta(e^{n^2}), \Theta(e^{\ln(n^4)})$
 
-Solution: Understand growth rates: \(\sin n\) is slowest, followed by logarithmic, polynomial, and exponential. Use limits to compare and order.
+Solution: Understand growth rates: $\sin n$ is slowest, followed by logarithmic, polynomial, and exponential. Use limits to compare and order.
 
-2. (3P) We consider a recursive algorithm that involves an input with \(n\) objects and having running time \(T(n) = 4 \cdot T(n/2) + n^2\). Determine the running Theta class of the algorithm.
+2. (3P) We consider a recursive algorithm that involves an input with $n$ objects and having running time $T(n) = 4 \cdot T\left(\frac{n}{2}\right) + n^2$. Determine the running Theta class of the algorithm.
 
-Solution: Identify recurrence: \(T(n) = a \cdot T(n/b) + f(n)\). Apply Master Theorem: Compare \(f(n)\) with \(n^{\log_b a}\) and determine the case.
+Solution: Identify recurrence: $T(n) = a \cdot T\left(\frac{n}{b}\right) + f(n)$. Apply Master Theorem: Compare $f(n)$ with $n^{\log_b a}$ and determine the case.
 
-3. (3P) We consider a recursive algorithm that involves an input with \(n\) objects and having running time \(T(n) = 4 \cdot T(n/2) + n\). Determine the running Theta class of the algorithm.
+3. (3P) We consider a recursive algorithm that involves an input with $n$ objects and having running time $T(n) = 4 \cdot T(n/2) + n$. Determine the running Theta class of the algorithm.
 
-Solution: Apply Master Theorem: Use Case 1 for \(f(n) = O(n^{\log_b a - \epsilon})\).
+Solution: Apply Master Theorem: Use Case 1 for $f(n) = O(n^{\log_b a - \epsilon})$.
 
-4. (3P) We consider a recursive algorithm that involves an input with \(n\) objects and having running time \(T(n) = 4 \cdot T(n/2) + n^3\). Determine the running Theta class of the algorithm.
+4. (3P) We consider a recursive algorithm that involves an input with $n$ objects and having running time $T(n) = 4 \cdot T(n/2) + n^3$. Determine the running Theta class of the algorithm.
 
-Solution: Apply Master Theorem: Use Case 3 for \(f(n) = \Omega(n^{\log_b a + \epsilon})\).
+Solution: Apply Master Theorem: Use Case 3 for $f(n) = \Omega(n^{\log_b a + \epsilon})$.
 
-\subsubsection*{Solution:}
-1. \(\Theta(\sin n), \Theta(\log_2 n), \Theta(\ln^2 n), \Theta(n^2), \Theta(e^{\log_2 n}), \Theta(n^3 + \ln(n^2)), \Theta(e^{\ln(n^4)}), \Theta(e^{n^2})\)
+\subsubsection{Solution:}
+1. $\Theta(\sin n), \Theta(\log_2 n), \Theta(\ln^2 n), \Theta(n^2), \Theta(e^{\log_2 n}), \Theta(n^3 + \ln(n^2)), \Theta(e^{\ln(n^4)}), \Theta(e^{n^2})$
 
-2. Case 2 Master theorem. \(\Theta(n^2 \ln n)\).
+2. Case 2 Master theorem. $\Theta(n^2 \ln n)$.
 
-3. Case 1 Master theorem. \(\Theta(n^2)\).
+3. Case 1 Master theorem. $\Theta(n^2)$.
 
-4. Case 3 Master theorem. \(\Theta(n^3)\). (In all three cases, 1p corrected answer 2p correct justification)
+4. Case 3 Master theorem. $\Theta(n^3)$. (In all three cases, 1p corrected answer 2p correct justification)
 
-\subsubsection*{Example 2}
+\subsubsection{Example 2}
 1. (4P) Write in increasing order from left to right the following list of Theta classes. When two classes are equal, make it clear.
 
-\(\Theta(n^{4/5}), \Theta(100n), \Theta(n \log_4 n), \Theta(n^{3/2}), \Theta(n^{\sqrt{n}}), \Theta(e^{\sqrt{2} \cdot n}), \Theta(e^n), \Theta(n!)\)
+$\Theta(n^{4/5}), \Theta(100n), \Theta(n \log_4 n), \Theta(n^{3/2}), \Theta(n^{\sqrt{n}}), \Theta(e^{\sqrt{2} \cdot n}), \Theta(e^n), \Theta(n!)$
 
 Solution: Understand growth rates: Familiarize yourself with common functions like polynomials, logarithms, exponentials, and factorials. Use limits to compare and order.
 
-2. (2P) Give two functions \(f(n)\) and \(g(n)\) such that
+2. (2P) Give two functions $f(n)$ and $g(n)$ such that
 
-\(\Theta(f(n) + g(n)) \neq \Theta(f(n))\) and \(\Theta(f(n) + g(n)) \neq \Theta(g(n))\)
+$\Theta(f(n) + g(n)) \neq \Theta(f(n))$ and $\Theta(f(n) + g(n)) \neq \Theta(g(n))$
 
 Solution: Choose functions with different growth rates.
 
-\subsubsection*{Solution:}
-\(\Theta(n^{4/5}), \Theta(100n), \Theta(n \log_4 n), \Theta(n^{\sqrt{n}}), \Theta(n^{3/2}) = \Theta(n^{\sqrt{n}}), \Theta(e^n), \Theta(e^{\sqrt{2} \cdot n}), \Theta(n!)\)
+\subsubsection{Solution:}
+$\Theta(n^{4/5}), \Theta(100n), \Theta(n \log_4 n), \Theta(n^{\sqrt{n}}), \Theta(n^{3/2}) = \Theta(n^{\sqrt{n}}), \Theta(e^n), \Theta(e^{\sqrt{2} \cdot n}), \Theta(n!)$
 
-\(f(n) = n\) and \(g(n) = -n + 1\)
+$f(n) = n$ and $g(n) = -n + 1$
 
-\subsection*{Exercise 2: Pseudocode Examples}
+\subsection{Exercise 2: Pseudocode Examples}
 
-\subsubsection*{Example 1: Pseudocode}
+\subsubsection{Example 1: Pseudocode}
 
 1. (6P) Write a pseudocode, which takes the input $A = \{a_1,a_2,\ldots,a_n\}$ and gives you as output $B = \{a_n,\ldots,a_2,a_1\}$ (i.e. same entries as in $A$ but, in the reversed order).
 
 Solution approach:
 - Use array indexing to swap elements
 - Only need to iterate through half the array (why? because each swap handles two positions)
-- Track running time: each operation is constant time, done n/2 times
+- Track running time: each operation is constant time, done $n/2$ times
 
-\begin{verbatim}
-REVERSEARRAY(A)
-for i = 1 to ⌊n/2⌋
-    exchange A[i] with A[n-i+1]
-return A
-\end{verbatim}
+\begin{algorithm}
+\begin{algorithmic}[1]
+\Procedure{ReverseArray}{$A$}
+\For{$i = 1$ to $\lfloor n/2 \rfloor$}
+    \State exchange $A[i]$ with $A[n-i+1]$
+\EndFor
+\State \Return $A$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
-Running time: $\Theta(n)$ because we perform n/2 constant-time operations.
+Running time: $\Theta(n)$ because we perform $n/2$ constant-time operations.
 
 2. (9P) Let $S$ be a set with $n$ integers, randomly ordered and not necessarily distinct. Let $m$ be an integer. Write a pseudocode, which tests whether there are two elements $a,b \in S$ with $a + b = m$ (a and b may be the same number).
 
@@ -78,23 +83,39 @@ Solution approach:
 - Best solution: Single pass with smart pointer movement = $O(n)$
 
 Naive solution (for understanding):
-\begin{verbatim}
-SUMTEST(S,m)
-for i = 1 to n-1
-    for j = i+1 to n
-        if S[i] + S[j] = m return true
-return false
-\end{verbatim}
+\begin{algorithm}
+\begin{algorithmic}[1]
+\Procedure{SumTest}{$S,m$}
+\For{$i = 1$ to $n-1$}
+    \For{$j = i+1$ to $n$}
+        \If{$S[i] + S[j] = m$}
+            \State \Return true
+        \EndIf
+    \EndFor
+\EndFor
+\State \Return false
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
 Optimized solution:
-\begin{verbatim}
-SUMTESTBEST(S,m)
-i = 1 to j = n
-if S[i] + S[j] = m return true
-if S[i] + S[j] < m, i=i+1
-else j = j+1 (# that is if S[i] + S[j] > m)
-stop when returns true or i > j
-\end{verbatim}
+\begin{algorithm}
+\begin{algorithmic}[1]
+\Procedure{SumTestBest}{$S,m$}
+\State $i \gets 1$, $j \gets n$
+\While{$i < j$}
+    \If{$S[i] + S[j] = m$}
+        \State \Return true
+    \ElsIf{$S[i] + S[j] < m$}
+        \State $i \gets i+1$
+    \Else
+        \State $j \gets j-1$
+    \EndIf
+\EndWhile
+\State \Return false
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
 Key insights for optimization:
 - Avoid checking all pairs
@@ -102,9 +123,9 @@ Key insights for optimization:
 - Think about how to move pointers based on sum comparison with target
 - Running time improves from $O(n^2)$ to $O(n)$
 
-\subsection*{Exercise 3: Sweep Line Algorithm}
+\subsection{Exercise 3: Sweep Line Algorithm}
 
-\subsubsection*{Example 1: ANYSEGMENTINTERSECT}
+\subsubsection{Example 1: ANYSEGMENTINTERSECT}
 
 Given the algorithm ANYSEGMENTINTERSECT and line segments on an (x,y)-plane, determine the sweep lines and partial orders.
 
@@ -148,9 +169,9 @@ Common mistakes to avoid:
 - Check both ABOVE and BELOW at insertion
 - List ALL segments crossing each sweep line
 
-\subsection*{Exercise 4: Points on the Plane}
+\subsection{Exercise 4: Points on the Plane}
 
-\subsubsection*{Example 1: Points on the Plane}
+\subsubsection{Example 1: Points on the Plane}
 
 1. (9P) Check for collinear points in 2D plane:
 
@@ -158,7 +179,7 @@ Solution steps:
 a) For each point $p_0$ as center:
    - Calculate angles between $\overline{p_0p_1}$ and all other segments $\overline{p_0p_j}$
    - Use DIRECTION($p_0$, $p_i$, $p_j$) = cross product $(p_1 - p_0) \times (p_j - p_0)$
-   - Calculate angle: $\alpha_j = \sin^{-1}(\frac{\text{cross product}}{||p_1-p_0|| \cdot ||p_j-p_0||})$
+   - Calculate angle: $\alpha_j = \sin^{-1}\left(\frac{\text{cross product}}{||p_1-p_0|| \cdot ||p_j-p_0||}\right)$
 
 b) For each center point:
    - Sort angles using merge sort: $O(n \log n)$
@@ -186,13 +207,15 @@ c) Continue alternating between:
    - Odd depth: horizontal splits (y-coordinate)
 
 Example tree structure:
-\begin{verbatim}
-At root (depth 0): vertical split
-- Left child: points left of median
-- Right child: points right of median
-  At depth 1: horizontal splits
-  - Top/bottom division for each subset
-\end{verbatim}
+\begin{algorithm}
+\begin{algorithmic}[1]
+\State At root (depth 0): vertical split
+\State \quad Left child: points left of median
+\State \quad Right child: points right of median
+\State At depth 1: horizontal splits
+\State \quad Top/bottom division for each subset
+\end{algorithmic}
+\end{algorithm}
 
 Key insights:
 - Alternate between x and y coordinates based on depth
@@ -200,27 +223,30 @@ Key insights:
 - Each split divides remaining points roughly in half
 - Tree will be balanced if splits are perfect medians
 
-\subsection*{Exercise 5: Fibonacci Sequence Analysis}
+\subsection{Exercise 5: Fibonacci Sequence Analysis}
 
 Input: Positive integer $n > 2$
 
 Algorithm analysis:
-\begin{verbatim}
-INPUT: a positive integer n > 2
-Create A an empty array with n entries
-Set A[1] = A[2] = 1
-for (i = 3; i ≤ n) do
-    A[i] = A[i-1] + A[i-2]
-return A[n]
-\end{verbatim}
+\begin{algorithm}
+\begin{algorithmic}[1]
+\State \textbf{Input:} a positive integer $n > 2$
+\State Create A an empty array with $n$ entries
+\State Set $A[1] = A[2] = 1$
+\For{$i = 3$ to $n$}
+    \State $A[i] = A[i-1] + A[i-2]$
+\EndFor
+\State \Return $A[n]$
+\end{algorithmic}
+\end{algorithm}
 
 Solution steps:
 - Algorithm builds Fibonacci sequence: 1, 1, 2, 3, 5, 8, 13, ...
 - Each number is sum of previous two
-- For n = 5, output is (1, 1, 2, 3, 5)
-- Running time: $\Theta(n)$ as we do n-3 iterations with constant operations
+- For $n = 5$, output is $(1, 1, 2, 3, 5)$
+- Running time: $\Theta(n)$ as we do $n-3$ iterations with constant operations
 
-\subsection*{Exercise 6: Binary Search Implementation}
+\subsection{Exercise 6: Binary Search Implementation}
 
 Write a recursive algorithm (divide-and-conquer) to check if k is in sorted array A.
 
@@ -231,34 +257,45 @@ Solution approach:
    - Determine which half to search
 
 2. Implementation:
-\begin{verbatim}
-BINARYSEARCH(A, k, left, right)
-    if left > right return -1
-    mid = ⌊(left + right)/2⌋
-    if A[mid] = k return mid
-    if A[mid] > k
-        return BINARYSEARCH(A, k, left, mid-1)
-    return BINARYSEARCH(A, k, mid+1, right)
-\end{verbatim}
+\begin{algorithm}
+\begin{algorithmic}[1]
+\Procedure{BinarySearch}{$A, k, left, right$}
+\If{$left > right$}
+    \State \Return -1
+\EndIf
+\State $mid \gets \lfloor(left + right)/2\rfloor$
+\If{$A[mid] = k$}
+    \State \Return mid
+\ElsIf{$A[mid] > k$}
+    \State \Return BinarySearch($A, k, left, mid-1$)
+\Else
+    \State \Return BinarySearch($A, k, mid+1, right$)
+\EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
 Running time: $\Theta(\log n)$ because:
 - Each step divides problem size by 2
 - Constant work at each level
 - Tree height is $\log n$
 
-\subsection*{Exercise 7: Minimum Distance Algorithm}
+\subsection{Exercise 7: Minimum Distance Algorithm}
 
 Algorithm analysis for finding minimum distance between points:
-\begin{verbatim}
-INPUT: n ≥ 2 points (x₁,y₁), (x₂,y₂) ..., (xₙ,yₙ)
-a = √((x₁-x₂)² + (y₁-y₂)²)
-for (i = 1; i < n) do
-    for (j = i+1; j ≤ n) do
-        r = √((xᵢ-xⱼ)² + (yᵢ-yⱼ)²)
-        if (r < a) then
-            a = r
-return a
-\end{verbatim}
+
+\begin{algorithmic}[1]
+\Procedure{MinDistance}{$P$}
+\State Initialize $minDist = \infty$
+\For{each pair of points $(p_i, p_j)$ in $P$}
+    \State Calculate distance $d = \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}$
+    \If{$d < minDist$}
+        \State Update $minDist = d$
+    \EndIf
+\EndFor
+\State \Return $minDist$
+\EndProcedure
+\end{algorithmic}
 
 Solution analysis:
 - Computes distance between all pairs of points
@@ -266,9 +303,9 @@ Solution analysis:
 - Running time: $\Theta(n^2)$ due to nested loops
 - Space complexity: $\Theta(1)$ as only storing minimum distance
 
-\subsection*{Exercise 8: Dijkstra's Algorithm}
+\subsection{Exercise 8: Dijkstra's Algorithm}
 
-\subsubsection*{Example 1: Dijkstra's Algorithm}
+\subsubsection{Example 1: Dijkstra's Algorithm}
 
 Consider weighted oriented graph with adjacency matrix:
 \[
@@ -300,9 +337,9 @@ Steps for Dijkstra's Algorithm:
    - Grey vertex: current EXTRACT-MIN(Q)
    - Shaded edges: show predecessor values
 
-\subsection*{Exercise 9: KD-Tree Construction}
+\subsection{Exercise 9: KD-Tree Construction}
 
-\subsubsection*{Example 1: KD-Tree Construction}
+\subsubsection{Example 1: KD-Tree Construction}
 
 Given points in xy-plane: $(-5,5), (-4,3), (-3,-5), (-2,-1), (-1,0), (0,-3), (1,2), (2,-4), (3,6)$
 
@@ -328,36 +365,48 @@ Steps to construct KD-Tree:
    - Connect nodes based on splits
    - Label depth and split direction
 
-\subsection*{Example 7: Array Operations}
+\subsection{Example 7: Array Operations}
 
 1. Check for duplicates in array:
-\begin{verbatim}
-DUPLICATES(A)
-    found = false
-    for i from 1 to n-1
-        for j=i+1 to n
-            if a[i]=a[j] found=true
-    return found
-\end{verbatim}
+\begin{algorithm}
+\begin{algorithmic}[1]
+\Procedure{Duplicates}{$A$}
+\State found = false
+\For{$i = 1$ to $n-1$}
+    \For{$j = i+1$ to $n$}
+        \If{$a[i]=a[j]$}
+            \State found = true
+        \EndIf
+    \EndFor
+\EndFor
+\State \Return found
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 Running time: $\Theta(n^2)$ because we check $\frac{n(n-1)}{2}$ pairs
 
 2. Recursive sum of array segment:
-\begin{verbatim}
-Sum(a,l,r)
-    if l=r
-        return a[l]
-    else
-        centre=⌊(l+r)/2⌋
-        sum1 = Sum(a,l,c)
-        sum2 = Sum(a,c+1,r)
-        return sum1+sum2
-\end{verbatim}
-Running time analysis:
-- T(1) = c (constant time)
-- T(n) = 2T(n/2) + O(1)
-- By Master Theorem (Case 1): T(n) = Θ(n)
+\begin{algorithm}
+\begin{algorithmic}[1]
+\Procedure{Sum}{$a,l,r$}
+\If{$l=r$}
+    \State \Return $a[l]$
+\Else
+    \State centre = $\lfloor(l+r)/2\rfloor$
+    \State sum1 = Sum($a,l,centre$)
+    \State sum2 = Sum($a,centre+1,r$)
+    \State \Return sum1+sum2
+\EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
-\subsection*{Example 8: Binary Search Tree Operations}
+Running time analysis:
+- $T(1) = c$ (constant time)
+- $T(n) = 2T(n/2) + O(1)$
+- By Master Theorem (Case 1): $T(n) = \Theta(n)$
+
+\subsection{Example 8: Binary Search Tree Operations}
 
 Tree-Delete operation steps:
 1. Find node to delete
@@ -373,7 +422,7 @@ Key insights:
 - Handle all cases (0, 1, 2 children)
 - Track parent pointers for clean deletion
 
-\subsection*{Example 9: Segment Intersections}
+\subsection{Example 9: Segment Intersections}
 
 For segments between two parallel lines (y=0 and y=1):
 
@@ -386,10 +435,84 @@ Algorithm approach:
    - Merge and count cross-inversions
 
 Running time analysis:
-- T(n) = 2T(n/2) + O(n)
-- By Master Theorem: T(n) = O(n log n)
+- $T(n) = 2T(n/2) + O(n)$
+- By Master Theorem: $T(n) = O(n \log n)$
 
 Key optimization:
 - Sort once at beginning
 - Use merge-sort principle for counting
-- Avoid checking all pairs (would be O(n²))
+- Avoid checking all pairs (would be $O(n²)$)
+
+\subsection{Exercise 7: Minimum Distance Algorithm}
+
+Algorithm analysis for finding minimum distance between points:
+
+\begin{algorithmic}[1]
+\Procedure{MinDistance}{$P$}
+\State Initialize $minDist = \infty$
+\For{each pair of points $(p_i, p_j)$ in $P$}
+    \State Calculate distance $d = \sqrt{(x_i-x_j)^2 + (y_i-y_j)^2}$
+    \If{$d < minDist$}
+        \State Update $minDist = d$
+    \EndIf
+\EndFor
+\State \Return $minDist$
+\EndProcedure
+\end{algorithmic}
+
+Solution analysis:
+- Computes distance between all pairs of points
+- Updates minimum distance when smaller distance found
+- Running time: $\Theta(n^2)$ due to nested loops
+- Space complexity: $\Theta(1)$ as only storing minimum distance
+
+% Array indices in heap diagram
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    level distance=1.5cm,
+    sibling distance=2cm,
+    every node/.style={circle, draw, minimum size=1cm, inner sep=2pt, font=\large}
+]
+\node {$i$}
+    child { node {$2i$} }
+    child { node {$2i{+}1$} };
+\end{tikzpicture}
+\caption{Array indices in heap}
+\label{fig:heap-indices}
+\end{figure}
+
+% MAX-HEAPIFY example diagram
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    level distance=1.8cm,
+    sibling distance=2.5cm,
+    every node/.style={circle, draw, thick, minimum size=1.2cm, inner sep=2pt, font=\large}
+]
+\node {16}
+    child { node {14}
+        child { node {10} }
+        child { node {8} }
+    }
+    child { node {9}
+        child { node {7} }
+        child { node {4} }
+    };
+\end{tikzpicture}
+\caption{MAX-HEAPIFY example}
+\label{fig:max-heapify}
+\end{figure}
+
+\textbf{MAX-HEAPIFY Operation:}
+\begin{enumerate}
+\item Compare root with children
+\item If child is larger, swap with largest child
+\item Recursively heapify affected subtree
+\end{enumerate}
+
+\textbf{BUILD-MAX-HEAP Operation:}
+\begin{enumerate}
+\item Start from last non-leaf node ($\lfloor n/2 \rfloor$)
+\item Apply MAX-HEAPIFY to each node up to root
+\end{enumerate}
