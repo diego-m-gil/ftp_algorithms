@@ -1,0 +1,1045 @@
+\subsection{Question 1: Knapsack Problem}
+\textbf{Question:} For a Knapsack Problem instance with \( n \) items and weight limit \( W \), a neighborhood is defined as follows: Remove the item with the worst value-to-weight ratio from the knapsack and then randomly insert an item that fits into (i.e., such that the weight limit is not exceeded). What is the best upper bound for the size of this neighborhood?
+
+\textbf{Solution:}
+The best upper bound for the size of this neighborhood is \( O(n^2) \).
+
+\textbf{Explanation:}
+To understand why the upper bound is \( O(n^2) \), consider the following:
+
+1. **Value-to-Weight Ratio**: The value-to-weight ratio is a measure of how much value an item provides per unit of weight. Removing the item with the worst ratio means optimizing the knapsack's efficiency.
+
+2. **Neighborhood Size**: After removing one item, you can potentially add any of the remaining \( n-1 \) items, provided they fit within the weight limit. This gives a linear number of choices.
+
+3. **Combinatorial Nature**: Since you can remove any item and then add any other item, this results in a quadratic number of combinations, hence the \( O(n^2) \) complexity.
+
+4. **Generalization**: Even if the question is framed differently, focus on the process of removing and adding items and the combinatorial possibilities to determine the neighborhood size.
+
+\subsection{Question 2: Partially Mapped Crossover (PMX)}
+\textbf{Question:} We apply Partially Mapped Crossover to the following permutations with swapping positions 4 to 7 (in blue):
+
+P1: 9 3 1 \textcolor{blue}{7 4 6 2} 5 8\\
+P2: 6 4 2 \textcolor{blue}{9 8 7 5} 3 1
+
+\textbf{Solution:}
+O1: 6 3 1 9 8 7 5 2 4\\
+O2: 9 8 5 7 4 6 2 3 1
+
+\textbf{Explanation:}
+To solve PMX problems, follow these steps:
+
+1. \textbf{Identify the Crossover Section:}
+   - Positions 4-7 are swapped (blue section)
+   - For O1: Take positions 4-7 from P2 (9875)
+   - For O2: Take positions 4-7 from P1 (7462)
+
+2. \textbf{Create Mapping:}
+   - 7 \( \leftrightarrow \) 9
+   - 4 \( \leftrightarrow \) 8
+   - 6 \( \leftrightarrow \) 7
+   - 2 \( \leftrightarrow \) 5
+
+3. \textbf{Fill Remaining Positions:}
+   - For positions outside the crossover section:
+     * If the number from the original parent doesn't create a duplicate, keep it
+     * If it would create a duplicate, use the mapping to find a replacement
+
+\subsection{Question 3: Algorithmic Concepts (True/False)}
+\textbf{Question:} For each statement, determine if it's True, False, or Not sure.
+
+\begin{enumerate}[label=\alph*)]
+\item TSP instances with up to 50 cities are most easily solved by an Exhaustive Search.\\
+\textbf{Answer:} False\\
+\textbf{Explanation:} While exhaustive search will find the optimal solution, it's not the most efficient approach even for 50 cities. The time complexity would be O(n!), making it impractical. Dynamic programming or branch-and-bound algorithms would be more efficient for this size.
+
+\item If a problem is NP-hard, then it is in NP.\\
+\textbf{Answer:} False\\
+\textbf{Explanation:} This is a common misconception. NP-hard problems are at least as hard as the hardest problems in NP, but they don't necessarily have to be in NP themselves. For example, the halting problem is NP-hard but not in NP.
+
+\item The Steiner Tree Problem is similar to the Minimum Spanning Tree Problem and can hence be solved in polynomial time.\\
+\textbf{Answer:} False\\
+\textbf{Explanation:} While both problems involve connecting nodes in a graph, the Steiner Tree Problem is NP-hard, unlike the Minimum Spanning Tree Problem which can be solved in polynomial time (e.g., using Kruskal's or Prim's algorithm).
+
+\item In the Capacitated Vehicle Routing Problem (CVRP), the location of the depot is usually fixed.\\
+\textbf{Answer:} True\\
+\textbf{Explanation:} In the standard CVRP, the depot location is indeed fixed. The problem focuses on finding optimal routes for vehicles with limited capacity to serve customers from this fixed depot.
+
+\item Tabu Search with a tabu duration t=0 is just like a Local Search.\\
+\textbf{Answer:} True\\
+\textbf{Explanation:} When the tabu duration is 0, no moves are stored in the tabu list, meaning every potential move is immediately "forgotten" and no moves are prohibited.
+
+\item The 3-opt neighborhood for a TSP instance with n cities is of size O(n³).\\
+\textbf{Answer:} True\\
+\textbf{Explanation:} For 3-opt moves in TSP, we need to select 3 edges from n possible edges. This gives us \(\binom{n}{3}\) = O(n³) possible combinations.
+
+\item The memory used to represent the adjacency matrix of a graph with n vertices and e edges is of size O(n²).\\
+\textbf{Answer:} True\\
+\textbf{Explanation:} The size is always n × n = n² regardless of actual number of edges. Each cell stores 0 or 1 (or weight for weighted graphs).
+
+\item For maximization problems the temperature in Simulated Annealing is increased over time.\\
+\textbf{Answer:} False\\
+\textbf{Explanation:} Temperature always decreases over time, regardless of problem type. High temperature means more random moves accepted.
+
+\item If a problem is NP-complete, then it is proven that there exist no algorithms, which solve the problem in polynomial time.\\
+\textbf{Answer:} False\\
+\textbf{Explanation:} NP-complete doesn't mean "no polynomial solution exists", it means "no polynomial solution is currently known". If \(P \neq NP\) (unproven), then no polynomial solution exists.
+
+\item A Genetic Algorithm with a higher mutation rate usually converges slower but towards better solutions in turn.\\
+\textbf{Answer:} True\\
+\textbf{Explanation:} Higher mutation rates increase exploration of the search space and help escape local optima, but at the cost of slower convergence.
+
+\item Best Insertion is a family of methods for improving existing solutions.\\
+\textbf{Answer:} False\\
+\textbf{Explanation:} It's a construction method, not an improvement method. It builds solutions by inserting elements one at a time.
+
+\end{enumerate}
+
+\textbf{Key Points to Remember:}
+\begin{itemize}
+\item \textbf{Algorithm Characteristics:} Understand the fundamental differences between construction methods (like Best Insertion) and improvement methods
+\item \textbf{Complexity Classes:} Know the relationships between P, NP, NP-hard, and NP-complete
+\item \textbf{Space Complexity:} Understand trade-offs between different data structures (e.g., adjacency matrix vs. list)
+\item \textbf{Search Parameters:} Know how parameters affect algorithm behavior (temperature, mutation rate, tabu duration)
+\item \textbf{Problem Variants:} Recognize how problem constraints affect complexity (fixed vs. variable depot in CVRP)
+\end{itemize}
+
+\subsection{Question 4: TSP with Asymmetric Distances and Pilot Method}
+\textbf{Question:} Given is a TSP instance by its asymmetric distance matrix below (e.g. the distance from c3 to c4 equals 7, whereas the distance from c4 to c3 equals 3).
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{From} \textbackslash \textbf{To} & c1 & c2 & c3 & c4 \\
+\hline
+c1 & - & 2 & 9 & 4 \\
+\hline
+c2 & 3 & - & 1 & 5 \\
+\hline
+c3 & 3 & 5 & - & 7 \\
+\hline
+c4 & 4 & 2 & 3 & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}[label=\alph*)]
+\item (1 point) What is the cost of tour c1-c2-c3-c4-c1?
+
+\textbf{Solution:} Cost = 14
+
+\textbf{Explanation:}
+To calculate the tour cost:
+\begin{itemize}
+\item c1 → c2: 2
+\item c2 → c3: 1
+\item c3 → c4: 7
+\item c4 → c1: 4
+\item Total: 2 + 1 + 7 + 4 = 14
+\end{itemize}
+Note: In asymmetric TSP, the cost from city i to j may differ from j to i.
+
+\item (5 points) We apply the Pilot Method, and use the Nearest Neighbor heuristic as the pilot strategy. A tour always starts and ends in city c1. What is the cost of the resulting tour?
+
+\textbf{Solution:} 
+Tour: c1-c4-c2-c3-c1\\
+Cost: 10
+
+\textbf{Explanation:}
+The Pilot Method with Nearest Neighbor works as follows:
+
+1. \textbf{Starting Point:}
+   - Start at c1 (required)
+   - Available cities: \{c2, c3, c4\}
+
+2. \textbf{First Step (from c1):}
+   - Try each possible next city and run NN from there
+   - From c1 to c2 (cost=2): Run NN → complete tour cost
+   - From c1 to c3 (cost=9): Run NN → complete tour cost
+   - From c1 to c4 (cost=4): Run NN → gives best complete tour
+   - Choose c4 as it leads to best complete tour
+
+3. \textbf{Second Step (from c4):}
+   - Available: \{c2, c3\}
+   - c4 → c2 (cost=2) is shorter than c4 → c3 (cost=3)
+   - Choose c2
+
+4. \textbf{Third Step (from c2):}
+   - Only c3 available
+   - Add c3 (cost=1)
+
+5. \textbf{Complete Tour:}
+   - Return to c1 from c3 (cost=3)
+   - Final tour: c1 → c4 → c2 → c3 → c1
+   - Total cost: 4 + 2 + 1 + 3 = 10
+
+\textbf{Key Points:}
+\begin{itemize}
+\item In asymmetric TSP, always check the correct direction costs
+\item Pilot Method looks ahead using a simple heuristic (NN here)
+\item The method makes each choice based on complete tour costs
+\item This often gives better results than simple Nearest Neighbor alone
+\end{itemize}
+\end{enumerate}
+
+\subsection{Question 5: Local Search and Tabu Search}
+\textbf{Question:} (15 points) The values of a function f(x, y) of two integer variables defined on the domain [-7, 7] × [-7, 7] are given by a table. We define a neighborhood that allows adding or subtracting 1 to/from one of the two variables (i.e. horizontal or vertical moves, but no diagonal ones).
+
+\begin{enumerate}[label=\alph*)]
+\item (5 points) The \textbf{minimum} of f is determined using a \textbf{Local Search} parametrized as follows:
+\begin{itemize}
+\item Initialization: x = -7, y = -7, f(x, y) = 175
+\item Selection Criterion: First Improving Move
+\item Ordering of the moves: Right, Up, Left, Down
+\end{itemize}
+
+\textbf{Solution:} 175-153-125-104-88-60-39-24-15-11-24-49-59-81-109-stop
+
+\textbf{Key Points for Local Search:}
+\begin{itemize}
+\item Always check neighbors in specified order (Right, Up, Left, Down)
+\item Take first move that improves (reduces) the value
+\item Stop when no improving move exists
+\item Draw arrows on table to track moves during exam
+\end{itemize}
+
+\item (10 points) The \textbf{minimum} of f is determined using a \textbf{Tabu Search} parametrized as follows:
+\begin{itemize}
+\item Initialization: x = -7, y = -7, f(x, y) = 175
+\item Tabu Condition: If t is added to a variable, there is no subtraction from this variable allowed for t iterations. Same if t is subtracted.
+\item The Tabu Condition applies unless a step leads to an improvement of the best solution so far.
+\item Selection Criterion: Always take the best possible move
+\item Stopping criteria: Maximum of 14 iterations reached, or no more moves allowed
+\end{itemize}
+
+\textbf{Solution for t = 4:} 175-133-85-46-18-13-14-10-10-9-9-7-13-10-3-stop
+
+\textbf{Key Points for Tabu Search:}
+\begin{itemize}
+\item Keep track of tabu moves for each variable (x and y)
+\item If you add to x, can't subtract from x for t iterations
+\item If you subtract from x, can't add to x for t iterations
+\item Same rules apply to y
+\item Aspiration: Take move anyway if it leads to best solution so far
+\item Always take best available non-tabu move
+\end{itemize}
+
+\textbf{Exam Strategy:}
+\begin{itemize}
+\item Draw arrows on the table to track your moves
+\item Keep a tabu list for each variable (x and y)
+\item For each step write:
+  \begin{itemize}
+  \item Current position (x,y)
+  \item Current value f(x,y)
+  \item Available moves
+  \item Tabu status
+  \item Best move chosen
+  \end{itemize}
+\end{itemize}
+\end{enumerate}
+
+\subsection{Question 6: Santa's Sleigh Challenge}
+\textbf{Question:} (3 points) We consider the Santa's Sleigh Challenge. Please answer ONE of the following two questions with at most 500 characters:
+
+\begin{enumerate}[label=\alph*)]
+\item Briefly describe a strategy to find an initial solution.
+\textbf{OR}
+\item Briefly describe a strategy to improve an existing solution.
+\end{enumerate}
+
+\textbf{Solution Approach for Initial Solution:}
+\begin{itemize}
+\item Use Nearest Neighbor heuristic: Start from North Pole, always visit closest gift next
+\item Consider weight constraints when building routes
+\item Split into multiple trips when sleigh capacity is reached
+\item Balance between distance and weight capacity
+\end{itemize}
+
+\textbf{Solution Approach for Improvement:}
+\begin{itemize}
+\item Apply 2-opt or 3-opt moves within each route
+\item Try moving gifts between adjacent routes
+\item Merge short routes and split long ones
+\item Use simulated annealing to escape local optima
+\item Focus on heaviest gifts first as they have most impact
+\end{itemize}
+
+\textbf{Key Points:}
+\begin{itemize}
+\item Consider both distance and weight constraints
+\item Balance between route length and number of trips
+\item Local search moves should respect weight capacity
+\item Prioritize improvements on longest/heaviest routes
+\end{itemize}
+
+\subsection{Question 7: TSP Lower Bound}
+\textbf{Question:} (3 points) Consider the Traveling Salesperson Problem instance sw24978. Give a good lower bound estimate of the number of possible tours, as a power of 10.
+
+\textbf{Solution:} 
+Number of cities: 24978\\
+Number of tours > $10^{51161}$
+
+\textbf{Explanation:}
+For a TSP with n cities:
+\begin{itemize}
+\item Total possible tours = (n-1)!/2
+\item For n = 24978: $\log_{10}((24978-1)!/2) > 51161$
+\item This shows the enormous size of the solution space
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item \textbf{When analyzing algorithm complexity:}
+  \begin{itemize}
+  \item Check if problem is in P, NP, or NP-hard
+  \item Look for special cases that might be easier
+  \item Consider if approximation algorithms exist
+  \item Understand the difference between decision and optimization problems
+  \end{itemize}
+
+\item \textbf{When evaluating metaheuristics:}
+  \begin{itemize}
+  \item Consider how parameters affect performance
+  \item Look for problem-specific adaptations
+  \item Understand exploration vs exploitation trade-off
+  \item Know typical parameter ranges and their effects
+  \end{itemize}
+
+\item \textbf{For selection methods in evolutionary algorithms:}
+  \begin{itemize}
+  \item Roulette wheel: probability proportional to fitness
+  \item Tournament: select best from random subset
+  \item Rank-based: probability based on sorted position
+  \item Consider selection pressure and diversity
+  \end{itemize}
+
+\item \textbf{For neighborhood structures:}
+  \begin{itemize}
+  \item Must be connected (can reach all solutions)
+  \item Size affects computational effort
+  \item Should reflect problem structure
+  \item Consider move evaluation efficiency
+  \end{itemize}
+\end{itemize}
+
+\subsection{Question 8: 2-opt Move}
+\textbf{Question:} (3 points) For a Travelling Salesperson Problem instance with seven cities, consider the tour:\\
+$c_1$-$c_2$-$c_3$-$c_4$-$c_5$-$c_6$-$c_7$-$c_1$
+
+Give the resulting tour of applying the 2-opt move, where the edges $c_2$-$c_3$ and $c_5$-$c_6$ are replaced.
+
+\textbf{Solution:} 
+Tour: $c_1$-$c_2$-$c_5$-$c_4$-$c_3$-$c_6$-$c_7$-$c_1$
+
+\textbf{Key Points for 2-opt:}
+\begin{itemize}
+\item Remove two edges
+\item Reverse the path between them
+\item Reconnect with new edges
+\item Useful for removing path crossings
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item \textbf{For routing problems:}
+  \begin{itemize}
+  \item Check all constraints (capacity, time windows, etc.)
+  \item Consider vehicle characteristics
+  \item Understand cost calculation rules
+  \item Look for problem-specific features
+  \end{itemize}
+
+\item \textbf{When analyzing distance metrics:}
+  \begin{itemize}
+  \item Euclidean vs Manhattan vs Great Circle
+  \item Symmetric vs asymmetric distances
+  \item Consider if triangle inequality holds
+  \item Impact on solution methods
+  \end{itemize}
+
+\item \textbf{For multi-trip problems:}
+  \begin{itemize}
+  \item Consider depot location and return trips
+  \item Balance load across trips
+  \item Account for vehicle capacity
+  \item Look for time/distance constraints
+  \end{itemize}
+
+\item \textbf{When evaluating solution methods:}
+  \begin{itemize}
+  \item Construction vs improvement methods
+  \item Single vs multiple vehicle approaches
+  \item Local vs global optimization
+  \item Trade-off between quality and speed
+  \end{itemize}
+\end{itemize}
+
+\subsection{Question 9: CVRP Neighborhood}
+\textbf{Question:} (7 points) Consider an instance of the Capacitated Vehicle Routing Problem (CVRP) with n customers and vehicle capacity Q. We define a neighborhood of a given solution S with m non-empty tours as follows:
+\begin{itemize}
+\item Select a random tour $t_s$ (source tour)
+\item Select a random customer X from $t_s$
+\item Traverse all other tours $t_d$ in a random ordering:
+  \begin{itemize}
+  \item Find a customer Y in $t_d$ such that the tours of X and Y can be swapped without exceeding the vehicle capacity Q for both tours
+  \item If such Y is found, then insert X in $t_d$ and Y in $t_s$ at random positions and then EXIT the traversing loop
+  \end{itemize}
+\end{itemize}
+
+\begin{enumerate}[label=\alph*)]
+\item (4 points) Give a good estimate of the running time (in O-Notation) to compute a new solution from this neighborhood. Hereby, assume that computing the total weight of a tour in the current solution takes O(1).
+
+\textbf{Solution:} Running time: O(n)
+
+\textbf{Explanation:}
+\begin{itemize}
+\item Selecting random tour and customer: O(1)
+\item For each other tour (max m-1 tours):
+  \begin{itemize}
+  \item Check each customer Y in current tour: O(n/m)
+  \item Weight calculation: O(1)
+  \item Total per tour: O(n/m)
+  \end{itemize}
+\item Total complexity: O(m * n/m) = O(n)
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item \textbf{For ant colony optimization:}
+  \begin{itemize}
+  \item Understand pheromone update rules
+  \item Know how solutions are constructed
+  \item Consider parameter settings:
+    \begin{itemize}
+    \item Colony size vs problem size
+    \item Evaporation rate effects
+    \item Pheromone bounds
+    \item Local vs global updates
+    \end{itemize}
+  \item Recognize convergence behavior
+  \end{itemize}
+
+\item \textbf{For population-based methods:}
+  \begin{itemize}
+  \item Population size considerations
+  \item Diversity maintenance
+  \item Selection pressure effects
+  \item Convergence criteria
+  \end{itemize}
+
+\item \textbf{When analyzing cooperative algorithms:}
+  \begin{itemize}
+  \item Information sharing mechanisms
+  \item Synchronization points
+  \item Local vs shared memory
+  \item Solution combination strategies
+  \end{itemize}
+
+\item \textbf{For parameter adaptation:}
+  \begin{itemize}
+  \item Static vs dynamic parameters
+  \item Feedback mechanisms
+  \item Problem size scaling
+  \item Performance indicators
+  \end{itemize}
+\end{itemize}
+
+\item (3 points) Give a good upper bound estimate for the size of the neighborhood of S.
+
+\textbf{Solution:} Size: O($n^4$)
+
+\textbf{Explanation:}
+\begin{itemize}
+\item Number of source tours: m
+\item Customers per tour: O(n/m)
+\item Possible destination tours: m-1
+\item Possible positions in destination tour: O(n/m)
+\item Possible positions in source tour: O(n/m)
+\item Total: O(m * n/m * m * n/m * n/m) = O($n^4$)
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item \textbf{For routing problems:}
+  \begin{itemize}
+  \item Check all constraints (capacity, time windows, etc.)
+  \item Consider vehicle characteristics
+  \item Understand cost calculation rules
+  \item Look for problem-specific features
+  \end{itemize}
+
+\item \textbf{When analyzing distance metrics:}
+  \begin{itemize}
+  \item Euclidean vs Manhattan vs Great Circle
+  \item Symmetric vs asymmetric distances
+  \item Consider if triangle inequality holds
+  \item Impact on solution methods
+  \end{itemize}
+
+\item \textbf{For multi-trip problems:}
+  \begin{itemize}
+  \item Consider depot location and return trips
+  \item Balance load across trips
+  \item Account for vehicle capacity
+  \item Look for time/distance constraints
+  \end{itemize}
+
+\item \textbf{When evaluating solution methods:}
+  \begin{itemize}
+  \item Construction vs improvement methods
+  \item Single vs multiple vehicle approaches
+  \item Local vs global optimization
+  \item Trade-off between quality and speed
+  \end{itemize}
+\end{itemize}
+\end{enumerate}
+
+\subsection{Question 10: True/False Statements (5.5 points)}
+\textbf{Note:} For every correct answer you will get 0.5 point, for every incorrect answer 0.5 points will be subtracted. For every ``Not sure'' answer you will neither get nor lose any points. Maximum amount of points for this task is 5.5 points, minimum is 0 points, i.e. a negative total will be set to 0.
+
+\begin{enumerate}[label=\alph*)]
+\item Vertex Coloring for graphs in general is NP-hard.
+\begin{itemize}
+\item $\blacktriangleright$ True \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ False
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item NP-hard problems typically involve:
+  \begin{itemize}
+  \item Finding optimal solutions in large search spaces
+  \item No known polynomial-time algorithms
+  \item Often have special cases that are polynomial-time solvable
+  \end{itemize}
+\item For graph coloring specifically:
+  \begin{itemize}
+  \item 2-coloring (bipartite) is polynomial
+  \item 3+ coloring is NP-hard
+  \item Greedy coloring gives upper bound
+  \end{itemize}
+\end{itemize}
+
+\item Although the Steiner Tree Problem is theoretically interesting, it is of no great practical use.
+\begin{itemize}
+\item $\circ$ True
+\item $\blacktriangleright$ False \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Real-world applications to consider:
+  \begin{itemize}
+  \item Network design (telecommunications, power grids)
+  \item Circuit design in VLSI
+  \item Transportation networks
+  \item Pipeline systems
+  \end{itemize}
+\item When evaluating practical use:
+  \begin{itemize}
+  \item Look for real industry applications
+  \item Consider if problem appears as subproblem
+  \item Check if approximation algorithms exist
+  \end{itemize}
+\end{itemize}
+
+\item Genetic Algorithms are constructive methods.
+\begin{itemize}
+\item $\circ$ True
+\item $\blacktriangleright$ False \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Understanding algorithm types:
+  \begin{itemize}
+  \item Constructive: Build solution step by step (e.g., Greedy)
+  \item Improvement: Start with complete solution and modify (e.g., Local Search)
+  \item Population-based: Work with multiple solutions (e.g., Genetic Algorithms)
+  \end{itemize}
+\item Genetic Algorithm characteristics:
+  \begin{itemize}
+  \item Requires initial population
+  \item Modifies existing solutions
+  \item Uses selection, crossover, mutation
+  \end{itemize}
+\end{itemize}
+
+\item Genetic Algorithms are suitable for solving Knapsack Problems, since Crossover and Mutation are easy to define for bit vectors.
+\begin{itemize}
+\item $\blacktriangleright$ True \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ False
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item When is a problem suitable for Genetic Algorithms:
+  \begin{itemize}
+  \item Natural binary representation possible
+  \item Easy to define crossover/mutation
+  \item Solution space is large
+  \item Multiple local optima likely
+  \end{itemize}
+\item For binary problems specifically:
+  \begin{itemize}
+  \item Bit-flip mutation is straightforward
+  \item One-point/two-point crossover works well
+  \item Easy fitness function calculation
+  \end{itemize}
+\end{itemize}
+
+\item In the Roulette Wheel Method solutions are chosen with uniformly distributed probability.
+\begin{itemize}
+\item $\circ$ True
+\item $\blacktriangleright$ False \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Selection methods to consider:
+  \begin{itemize}
+  \item Roulette Wheel: Probability proportional to fitness
+  \item Random Sampling: Uniform probability
+  \item Tournament: Compare subset of solutions
+  \end{itemize}
+\item When evaluating selection methods:
+  \begin{itemize}
+  \item Consider bias towards better solutions
+  \item Look for computational efficiency
+  \item Check if method promotes diversity
+  \end{itemize}
+\end{itemize}
+
+\item Minimum Shortest Path Problem is in NP.
+\begin{itemize}
+\item $\blacktriangleright$ True \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ False
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Complexity classes to remember:
+  \begin{itemize}
+  \item P: Polynomial time solvable
+  \item NP: Verifiable in polynomial time
+  \item NP-hard: At least as hard as hardest NP problems
+  \item NP-complete: NP-hard and in NP
+  \end{itemize}
+\item For shortest path problems:
+  \begin{itemize}
+  \item Dijkstra's algorithm solves in polynomial time
+  \item Negative weight edges require Bellman-Ford
+  \item NP-hard variants exist (e.g., with constraints)
+  \end{itemize}
+\end{itemize}
+
+\item Choosing an appropriate neighborhood is crucial for solving a problem with Simulated Annealing.
+\begin{itemize}
+\item $\blacktriangleright$ True \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ False
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Neighborhood design considerations:
+  \begin{itemize}
+  \item Connectivity: Ensure all solutions reachable
+  \item Size: Balance exploration and computational cost
+  \item Structure: Reflect problem's underlying structure
+  \end{itemize}
+\item When evaluating neighborhood quality:
+  \begin{itemize}
+  \item Check if it allows escaping local optima
+  \item Consider the impact on convergence speed
+  \item Look for problem-specific neighborhood designs
+  \end{itemize}
+\end{itemize}
+
+\item Random Sampling converges fast towards good solutions if the parameters of the algorithm are set appropriately.
+\begin{itemize}
+\item $\circ$ True
+\item $\blacktriangleright$ False \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Random Sampling characteristics:
+  \begin{itemize}
+  \item Simple to implement
+  \item Fast convergence unlikely
+  \item May get stuck in local optima
+  \end{itemize}
+\item When evaluating convergence speed:
+  \begin{itemize}
+  \item Consider the size of the solution space
+  \item Look for problem-specific heuristics
+  \item Check if algorithm uses learning/adaptation
+  \end{itemize}
+\end{itemize}
+
+\item In Simulated Annealing, the temperature schedule must be chosen depending on the size of the problem to be solved.
+\begin{itemize}
+\item $\blacktriangleright$ True \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ False
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Temperature schedule considerations:
+  \begin{itemize}
+  \item Initial temperature: High enough for exploration
+  \item Cooling rate: Balance exploration and convergence
+  \item Final temperature: Low enough for convergence
+  \end{itemize}
+\item When evaluating temperature schedules:
+  \begin{itemize}
+  \item Check if it allows escaping local optima
+  \item Consider the impact on convergence speed
+  \item Look for problem-specific temperature schedules
+  \end{itemize}
+\end{itemize}
+
+\item Capacitated Vehicle Routing Problems (CVRP) can always be solved optimally with a greedy algorithm.
+\begin{itemize}
+\item $\circ$ True
+\item $\blacktriangleright$ False \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item CVRP complexity:
+  \begin{itemize}
+  \item NP-hard due to routing and capacity constraints
+  \item Greedy algorithms give fast but not optimal solutions
+  \item Exact methods exist but are computationally expensive
+  \end{itemize}
+\item When evaluating solution methods:
+  \begin{itemize}
+  \item Consider the trade-off between solution quality and computational time
+  \item Look for problem-specific heuristics
+  \item Check if algorithm uses learning/adaptation
+  \end{itemize}
+\end{itemize}
+
+\item Tabu Search is an improving method.
+\begin{itemize}
+\item $\blacktriangleright$ True \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ False
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Tabu Search characteristics:
+  \begin{itemize}
+  \item Uses memory to store recently visited solutions
+  \item Avoids cycling by forbidding recent moves
+  \item Can escape local optima using aspiration criteria
+  \end{itemize}
+\item When evaluating improving methods:
+  \begin{itemize}
+  \item Consider the trade-off between solution quality and computational time
+  \item Look for problem-specific heuristics
+  \item Check if algorithm uses learning/adaptation
+  \end{itemize}
+\end{itemize}
+\end{enumerate}
+
+\textbf{Key Points to Remember:}
+\begin{itemize}
+\item \textbf{Algorithm Characteristics:} Understand the fundamental differences between construction methods (like Best Insertion) and improvement methods
+\item \textbf{Complexity Classes:} Know the relationships between P, NP, NP-hard, and NP-complete
+\item \textbf{Space Complexity:} Understand trade-offs between different data structures (e.g., adjacency matrix vs. list)
+\item \textbf{Search Parameters:} Know how parameters affect algorithm behavior (temperature, mutation rate, tabu duration)
+\item \textbf{Problem Variants:} Recognize how problem constraints affect complexity (fixed vs. variable depot in CVRP)
+\end{itemize}
+
+\subsection{Question 11: Santa's Sleigh Challenge (3 points)}
+\textbf{Note:} For every correct answer you will get 0.5 point, for every incorrect answer 0.5 points will be subtracted. For every ``Not sure'' answer you will neither get nor lose any points. Maximum amount of points for this task is 5.5 points, minimum is 0 points, i.e. a negative total will be set to 0.
+
+We consider the Santa's Sleigh Challenge. Which of the following statements is correct?
+
+\begin{enumerate}[label=\alph*)]
+\item Distances between locations are computed using Euclidean coordinates.
+\begin{itemize}
+\item $\circ$ True
+\item $\blacktriangleright$ False \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item When analyzing distance calculations:
+  \begin{itemize}
+  \item Check if Euclidean, Manhattan, or Great Circle
+  \item Consider if distances are symmetric
+  \item Look for special cases (e.g., grid-based)
+  \end{itemize}
+\item For routing problems:
+  \begin{itemize}
+  \item Check capacity constraints
+  \item Consider time windows if present
+  \item Look for multiple vehicle aspects
+  \item Identify if split deliveries allowed
+  \end{itemize}
+\end{itemize}
+
+\item The goal of the challenge is to minimize the total amount of time used to deliver all the presents.
+\begin{itemize}
+\item $\circ$ True
+\item $\blacktriangleright$ False \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Objective functions to consider:
+  \begin{itemize}
+  \item Minimize total distance
+  \item Minimize total time
+  \item Maximize profit
+  \item Minimize environmental impact
+  \end{itemize}
+\item When evaluating objective functions:
+  \begin{itemize}
+  \item Consider the problem's context
+  \item Look for multiple objectives
+  \item Check if objectives are conflicting
+  \end{itemize}
+\end{itemize}
+
+\item Presents may be temporarily stored at any location.
+\begin{itemize}
+\item $\circ$ True
+\item $\blacktriangleright$ False \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Problem constraints to consider:
+  \begin{itemize}
+  \item Capacity constraints
+  \item Time windows
+  \item Multiple vehicles
+  \item Split deliveries
+  \end{itemize}
+\item When evaluating problem constraints:
+  \begin{itemize}
+  \item Check if constraints are hard or soft
+  \item Consider the impact on solution quality
+  \item Look for problem-specific constraints
+  \end{itemize}
+\end{itemize}
+
+\item The cost of a tour depends on the weight of the sleigh.
+\begin{itemize}
+\item $\blacktriangleright$ True \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ False
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Cost functions to consider:
+  \begin{itemize}
+  \item Distance-based
+  \item Time-based
+  \item Weight-based
+  \item Profit-based
+  \end{itemize}
+\item When evaluating cost functions:
+  \begin{itemize}
+  \item Consider the problem's context
+  \item Look for multiple cost components
+  \item Check if costs are linear or non-linear
+  \end{itemize}
+\end{itemize}
+
+\item The weight of the sleigh is higher than its carrying capacity.
+\begin{itemize}
+\item $\circ$ True
+\item $\blacktriangleright$ False \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Vehicle characteristics to consider:
+  \begin{itemize}
+  \item Capacity
+  \item Weight
+  \item Speed
+  \item Fuel efficiency
+  \end{itemize}
+\item When evaluating vehicle characteristics:
+  \begin{itemize}
+  \item Check if characteristics are fixed or variable
+  \item Consider the impact on solution quality
+  \item Look for problem-specific characteristics
+  \end{itemize}
+\end{itemize}
+
+\item The winning team of the official challenge used an exclusively greedy method to find their final solution.
+\begin{itemize}
+\item $\circ$ True
+\item $\blacktriangleright$ False \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Solution methods to consider:
+  \begin{itemize}
+  \item Greedy algorithms
+  \item Local search
+  \item Metaheuristics
+  \item Exact methods
+  \end{itemize}
+\item When evaluating solution methods:
+  \begin{itemize}
+  \item Consider the trade-off between solution quality and computational time
+  \item Look for problem-specific heuristics
+  \item Check if algorithm uses learning/adaptation
+  \end{itemize}
+\end{itemize}
+\end{enumerate}
+
+\textbf{Key Points to Remember:}
+\begin{itemize}
+\item \textbf{Problem Context:} Understand the problem's context and constraints
+\item \textbf{Objective Functions:} Know the different types of objective functions
+\item \textbf{Cost Functions:} Understand the different types of cost functions
+\item \textbf{Vehicle Characteristics:} Know the different vehicle characteristics
+\item \textbf{Solution Methods:} Understand the different solution methods
+\end{itemize}
+
+\subsection{Question 12: Ant System Algorithm (2 points)}
+\textbf{Note:} For every correct answer you will get 0.5 point, for every incorrect answer 0.5 points will be subtracted. For every ``Not sure'' answer you will neither get nor lose any points. Maximum amount of points for this task is 5.5 points, minimum is 0 points, i.e. a negative total will be set to 0.
+
+A basic Ant System algorithm (i.e. without any local search application to the intermediate solutions) is applied to the Traveling Sales Person problem (TSP). Which of the following statements are correct?
+
+\begin{enumerate}[label=\alph*)]
+\item Choosing an appropriate neighborhood is crucial for solving the problem with the Ant System algorithm.
+\begin{itemize}
+\item $\circ$ True
+\item $\blacktriangleright$ False \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Algorithm characteristics to check:
+  \begin{itemize}
+  \item Population vs single solution
+  \item Memory usage (e.g., pheromone trails)
+  \item Parallel vs sequential
+  \item Deterministic vs probabilistic
+  \end{itemize}
+\item Implementation aspects:
+  \begin{itemize}
+  \item Parameter settings (colony size, evaporation rate)
+  \item Solution construction method
+  \item Update rules
+  \item Stopping criteria
+  \end{itemize}
+\end{itemize}
+
+\item When building a path, ants choose an edge with a probability proportional to the amount of pheromones accumulated on that edge.
+\begin{itemize}
+\item $\blacktriangleright$ True \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ False
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Pheromone trails:
+  \begin{itemize}
+  \item Used to guide search
+  \item Updated based on solution quality
+  \item Evaporate over time
+  \end{itemize}
+\item When evaluating pheromone trails:
+  \begin{itemize}
+  \item Check if they promote exploration
+  \item Consider the impact on convergence speed
+  \item Look for problem-specific pheromone trail designs
+  \end{itemize}
+\end{itemize}
+
+\item Inside every iteration of the algorithm, artificial ants cooperate in building a new path.
+\begin{itemize}
+\item $\circ$ True
+\item $\blacktriangleright$ False \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Cooperation mechanisms:
+  \begin{itemize}
+  \item Pheromone trails
+  \item Solution sharing
+  \item Cooperative problem solving
+  \end{itemize}
+\item When evaluating cooperation mechanisms:
+  \begin{itemize}
+  \item Check if they promote exploration
+  \item Consider the impact on convergence speed
+  \item Look for problem-specific cooperation mechanisms
+  \end{itemize}
+\end{itemize}
+
+\item To get good solutions, the number of ants must be chosen depending on the number of cities of the TSP instance to be solved.
+\begin{itemize}
+\item $\blacktriangleright$ True \hspace{1em} \textcolor{red}{(correct)}
+\item $\circ$ False
+\item $\circ$ Not sure
+\end{itemize}
+
+\textbf{Key Points for Similar Questions:}
+\begin{itemize}
+\item Parameter settings:
+  \begin{itemize}
+  \item Colony size
+  \item Evaporation rate
+  \item Solution construction method
+  \item Update rules
+  \end{itemize}
+\item When evaluating parameter settings:
+  \begin{itemize}
+  \item Check if they promote exploration
+  \item Consider the impact on convergence speed
+  \item Look for problem-specific parameter settings
+  \end{itemize}
+\end{itemize}
+\end{enumerate}
+
+\textbf{Key Points to Remember:}
+\begin{itemize}
+\item \textbf{Algorithm Characteristics:} Understand the fundamental differences between population-based and single-solution algorithms
+\item \textbf{Pheromone Trails:} Know how pheromone trails are used to guide search
+\item \textbf{Cooperation Mechanisms:} Understand how cooperation mechanisms promote exploration and convergence
+\item \textbf{Parameter Settings:} Know how parameter settings affect algorithm performance
+\item \textbf{Problem-Specific Designs:} Look for problem-specific designs for pheromone trails, cooperation mechanisms, and parameter settings
+\end{itemize}
+
+\textbf{General Tips for Multiple Choice:}
+\begin{itemize}
+\item For algorithm questions: Consider if it's constructive or improving
+\item For complexity questions: Think about whether problem can be solved in polynomial time
+\item For parameter questions: Consider if parameter affects solution quality
+\item For probability questions: Think about whether it's uniform or weighted
+\item When unsure: "Not sure" is better than guessing (no point deduction)
+\end{itemize}

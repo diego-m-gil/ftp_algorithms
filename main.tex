@@ -1,11 +1,11 @@
-\documentclass[11pt,a4paper,twocolumn]{article}
+\documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{tikz}
 \usetikzlibrary{arrows,arrows.meta,positioning,calc,shapes.geometric,decorations.markings}
 \usepackage[margin=1cm,footskip=0.5cm]{geometry}
-\usepackage{enumitem}
+\usepackage[shortlabels]{enumitem}
 \usepackage{hyperref}
 \usepackage{tocloft}
 \usepackage{graphicx}
@@ -15,6 +15,7 @@
 \usepackage{placeins}
 \usepackage{tabularx}
 \usepackage{multicol}
+\usepackage{bookmark}
 
 % Column separator and spacing
 \setlength{\columnseprule}{0.4pt}
@@ -51,26 +52,48 @@
 }
 
 \begin{document}
-\onecolumn
 \maketitle
+
 \begin{multicols}{2}
 \tableofcontents
 \end{multicols}
-\clearpage
+\newpage
 
-\twocolumn
-% Content from weeks 1-7
-\input{weeks1-7}
-\clearpage
-% Content from weeks 8-14
-\input{weeks8-14}
+\begin{multicols}{2}
 
-\clearpage
-% Exercises
-\input{exercises}
+\subsection{Theory 1}
+\input{weeks1-7.tex}  
+
+\subsection{Theory 2}
+\input{weeks8-14.tex}
+
+\end{multicols}
+
+\newpage
+
+\section{Exercises Part 1}
+\begin{multicols}{2}
+\input{exercises-part1}
 \input{exercises-part2}
 \input{exercises-part3}
 \input{exercises-part4}
 \input{exercises-part5}
+\end{multicols}
+
+\section{Exercises Part 2}
+\begin{multicols}{2}
+\input{exercises-part7}
+\end{multicols}
+
+% Mock Exam Parts
+\section{Mock Exam Part 1}
+\begin{multicols}{2}
+% Contents will be added later
+\end{multicols}
+
+\section{Mock Exam Part 2}
+\begin{multicols}{2}
+\input{exercises-part6}
+\end{multicols}
 
 \end{document}

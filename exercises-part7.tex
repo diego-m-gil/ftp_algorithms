@@ -1,0 +1,138 @@
+\section{Exercises Part 2}
+\subsection{Exercise 8.1: Drawing 5 Lines}
+\textbf{Problem:} Prove that you cannot draw 5 lines on the Euclidean plane in such a way that each line cuts exactly 3 other lines.
+
+\textbf{Solution:}
+Using graph modeling:
+\begin{itemize}
+\item One line = one node
+\item One intersection = one edge
+\item Problem: Draw a graph with 5 nodes, each of degree 3
+\item Sum of the degrees = 15
+\item In any graph, sum of degrees must be even (each edge has 2 extremities)
+\item Conclusion: Infeasible!
+\end{itemize}
+
+\textbf{Explanation:}
+To solve similar problems, consider the following steps:
+\begin{enumerate}
+\item Model the problem using graph theory concepts.
+\item Identify nodes and edges based on the problem statement.
+\item Calculate the degree of each node and ensure the sum of degrees is even.
+\item Use these calculations to determine feasibility.
+\end{enumerate}
+
+\subsection{Exercise 8.2: TSP Mathematical Formulation}
+\textbf{Problem:} Give an exact formulation of the travelling salesperson problem.
+
+\textbf{Solution:}
+Input data:
+\begin{itemize}
+\item Distance matrix $D = (d_{ij})$ between cities $i$ and $j$
+\item Objective: Find permutation $p$ of $n$ cities minimizing:
+\[ \sum_{i=1}^{n-1} d_{p_ip_{i+1}} + d_{p_np_1} \]
+\end{itemize}
+
+\textbf{Explanation:}
+For similar exercises:
+\begin{enumerate}
+\item Understand the problem constraints and objectives.
+\item Define the input data clearly, such as distance matrices.
+\item Formulate the objective function based on the problem requirements.
+\item Use permutations or combinations to find optimal solutions.
+\end{enumerate}
+
+\subsection{Exercise 8.3: Cards Problem Optimization}
+\textbf{Problem:} 50 cards numbered 1 to 50 must be separated into 2 stacks. First stack sum = 1170, second stack product = 36000.
+
+\textbf{Solution:}
+Encoding:
+\begin{itemize}
+\item Zero-one vector $s$ where $s_i = 0$ means card $i$ is in first stack
+\item Objective function to minimize:
+\[ f(s) = \left|\frac{1170 - \sum_{i=1}^{50} i \cdot (1-s_i)}{1170}\right| + \left|\frac{36000 - \prod_{i=1}^{50} i^{s_i}}{36000}\right| \]
+\end{itemize}
+
+\textbf{Explanation:}
+For similar optimization problems:
+\begin{enumerate}
+\item Define the decision variables and constraints clearly.
+\item Formulate the objective function to reflect the problem goals.
+\item Use mathematical tools to solve for optimal solutions.
+\item Validate results by checking against constraints.
+\end{enumerate}
+
+\subsection{Exercise 8.4: Timetable for Exams}
+\textbf{Problem:} Timetable for Exams
+
+\textbf{Solution:}
+This problem can be formulated as a Vertex Colouring Problem: Each examination is a node, and two nodes are connected if at least one student exists who has to take both exams.
+
+\textbf{Steps to Solve:}
+\begin{enumerate}
+\item \textbf{Identify Nodes:} Each exam is a node in the graph.
+\item \textbf{Connect Nodes:} Draw an edge between nodes if a student is enrolled in both exams.
+\item \textbf{Apply Colouring:} Use colouring to assign days to exams such that no two connected nodes share the same colour.
+\item \textbf{Minimize Colours:} The goal is to use the minimum number of colours, representing the minimum number of days.
+\end{enumerate}
+
+\subsection{Exercise 8.5: Permutation Flow Shop Problem}
+\textbf{Problem:} Number of Solutions for Permutation Flow Shop Problem
+
+\textbf{Solution:}
+For Permutation Flow Shop Problems, only the ordering of the n jobs on the first machine need to be selected, since the ordering of tasks on the other machines is then fixed. So there are n! permutations of n jobs.
+
+\textbf{Steps to Solve:}
+\begin{enumerate}
+\item \textbf{Understand the Problem:} Recognize that the order of jobs on the first machine determines the sequence for all machines.
+\item \textbf{Calculate Permutations:} Use factorial $n!$ to calculate the number of possible job sequences.
+\item \textbf{Apply Constraints:} Consider any additional constraints that might affect the ordering.
+\end{enumerate}
+
+\subsection{Exercise 8.6: Asymptotic Runtime}
+\textbf{Problem:} Asymptotic Runtime
+
+\textbf{Solution:}
+a) The asymptotic runtime of the given code is $O(n^2)$
+b) The ascending ordering is: 1, log n, n, $n^2$, $n^3$, $(3/2)^n$, $2^n$.
+
+\textbf{Steps to Solve:}
+\begin{enumerate}
+\item \textbf{Analyze Code:} Break down the loops to understand their contribution to runtime.
+\item \textbf{Identify Dominant Terms:} Focus on the terms that grow fastest as $n$ increases.
+\item \textbf{Order Functions:} Arrange functions by growth rate to understand their asymptotic behavior.
+\end{enumerate}
+
+\subsection{Exercise 8.7: Dijkstra's Algorithm}
+\textbf{Problem:} Example on Dijkstra's Algorithm
+
+\textbf{Solution:}
+A, B, C, D, E
+lambda = (0, 5, 2, 10, 12)
+p = (-, C, A, B, D)
+
+\textbf{Steps to Solve:}
+\begin{enumerate}
+\item \textbf{Initialize Distances:} Set the starting node's distance to zero and all others to infinity.
+\item \textbf{Select Node:} Choose the node with the smallest tentative distance.
+\item \textbf{Update Neighbors:} Calculate the tentative distances for neighboring nodes.
+\item \textbf{Repeat:} Continue until all nodes are processed.
+\item \textbf{Construct Path:} Use the predecessor array to reconstruct the shortest path.
+\end{enumerate}
+
+\subsection{Exercise 8.8: Prim's Algorithm}
+\textbf{Problem:} Example on Prim's Algorithm
+
+\textbf{Solution:}
+A, B, C, D, E, F, G
+lambda = (0, 7, 5, 5, 7, 6, 9)
+p = (-, A, E, A, B, D, E)
+$E_T$ = \{(A,D), (D,F), (A,B), (B,E), (E,C), (E,G)\}
+
+\textbf{Steps to Solve:}
+\begin{enumerate}
+\item \textbf{Initialize:} Start with a single node and an empty edge set.
+\item \textbf{Select Edge:} Choose the smallest edge connecting the tree to a new vertex.
+\item \textbf{Add Edge:} Include this edge and vertex in the tree.
+\item \textbf{Repeat:} Continue until all vertices are included in the tree.
+\end{enumerate}

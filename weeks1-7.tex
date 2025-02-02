@@ -807,3 +807,27 @@ For a node at index $i$:
     \item When stability is required
     \item When input range is $O(n)$
 \end{itemize}
+
+\subsection{Week 7: Theoretical Concepts}
+\subsubsection{Polar Angles}
+\textbf{Definition:} The polar angle of a point $p_i$ with respect to an origin $p_0$ is the angle from the semi-horizontal straight line $r$ and the vector $\overrightarrow{p_0p_i}$. The angle is measured counterclockwise and is in the interval $[0, 2\pi)$.
+
+\textbf{Applications:}
+\begin{itemize}[noitemsep]
+    \item Sorting points by polar angle for computational geometry tasks.
+    \item Efficient algorithms with $O(n \log n)$ complexity.
+\end{itemize}
+
+\subsubsection{Segment Intersections}
+\textbf{ANY-SEGMENTS-INTERSECT Algorithm:}
+\begin{itemize}[noitemsep]
+    \item Detects if any segments intersect at a point.
+    \item Uses a sweep line approach to efficiently handle intersections.
+    \item Handles vertical segments by treating endpoints appropriately.
+\end{itemize}
+
+\textbf{Key Insights:}
+\begin{itemize}[noitemsep]
+    \item The algorithm efficiently processes event points with $O(n \log n)$ complexity.
+    \item Correctly identifies intersections involving multiple segments, including vertical ones.
+\end{itemize}
